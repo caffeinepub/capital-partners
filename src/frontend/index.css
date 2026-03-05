@@ -1,0 +1,404 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Font Faces ─────────────────────────────────────────── */
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("/assets/fonts/CabinetGrotesk.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/assets/fonts/Outfit.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Design Tokens (Dark Theme – Capital Partners) ──────── */
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Pure black base */
+    --background: 0.05 0 0;
+    --foreground: 0.97 0 0;
+
+    /* Card surfaces – very dark */
+    --card: 0.09 0 0;
+    --card-foreground: 0.97 0 0;
+
+    /* Popover */
+    --popover: 0.12 0.01 285;
+    --popover-foreground: 0.97 0 0;
+
+    /* Primary: electric purple */
+    --primary: 0.54 0.24 293;
+    --primary-foreground: 0.98 0 0;
+
+    /* Secondary: dark purple surface */
+    --secondary: 0.16 0.04 285;
+    --secondary-foreground: 0.90 0 0;
+
+    /* Muted */
+    --muted: 0.14 0.02 280;
+    --muted-foreground: 0.60 0 0;
+
+    /* Accent: violet glow */
+    --accent: 0.50 0.26 295;
+    --accent-foreground: 0.98 0 0;
+
+    /* Destructive */
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    /* Borders */
+    --border: 0.22 0.04 285;
+    --input: 0.18 0.03 280;
+    --ring: 0.54 0.24 293;
+
+    /* Gold accent */
+    --gold: 0.72 0.16 75;
+    --gold-bright: 0.82 0.18 80;
+
+    /* Charts */
+    --chart-1: 0.54 0.24 293;
+    --chart-2: 0.62 0.22 295;
+    --chart-3: 0.72 0.16 75;
+    --chart-4: 0.40 0.18 290;
+    --chart-5: 0.65 0.20 300;
+
+    /* Sidebar */
+    --sidebar: 0.08 0 0;
+    --sidebar-foreground: 0.97 0 0;
+    --sidebar-primary: 0.54 0.24 293;
+    --sidebar-primary-foreground: 0.985 0 0;
+    --sidebar-accent: 0.16 0.04 285;
+    --sidebar-accent-foreground: 0.97 0 0;
+    --sidebar-border: 0.22 0.04 285;
+    --sidebar-ring: 0.54 0.24 293;
+  }
+
+  /* Force dark mode always */
+  html {
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-color: oklch(0.05 0 0);
+    color: oklch(0.97 0 0);
+  }
+}
+
+/* ─── Scroll behavior ────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Scroll Reveal ──────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ─── Glow Pulse ─────────────────────────────────────────── */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px oklch(0.54 0.24 293 / 0.5), 0 0 40px oklch(0.54 0.24 293 / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px oklch(0.54 0.24 293 / 0.8), 0 0 60px oklch(0.54 0.24 293 / 0.5), 0 0 100px oklch(0.54 0.24 293 / 0.2);
+  }
+}
+
+@keyframes text-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float-up {
+  0% { opacity: 0; transform: translateY(60px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(-20px) translateX(10px); }
+  66% { transform: translateY(-10px) translateX(-10px); }
+}
+
+/* ─── Glass Morphism ─────────────────────────────────────── */
+.glass {
+  background: oklch(0.10 0.02 285 / 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid oklch(0.54 0.24 293 / 0.2);
+}
+
+.glass-nav {
+  background: oklch(0.05 0 0 / 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid oklch(0.54 0.24 293 / 0.25);
+}
+
+/* ─── Service Card Hover ─────────────────────────────────── */
+.service-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, oklch(0.54 0.24 293 / 0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px oklch(0.54 0.24 293 / 0.35), 0 0 0 1px oklch(0.54 0.24 293 / 0.5);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+/* ─── Portfolio Card ─────────────────────────────────────── */
+.portfolio-card {
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px oklch(0.54 0.24 293 / 0.4), 0 0 0 1px oklch(0.54 0.24 293 / 0.6);
+}
+
+.portfolio-card .card-img {
+  transition: transform 0.5s ease;
+}
+
+.portfolio-card:hover .card-img {
+  transform: scale(1.08);
+}
+
+/* ─── Button Glow ────────────────────────────────────────── */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -75%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    oklch(0.97 0 0 / 0.2),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+
+.btn-glow:hover::after {
+  left: 125%;
+}
+
+/* ─── Purple gradient text ───────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    oklch(0.54 0.24 293),
+    oklch(0.72 0.22 295),
+    oklch(0.82 0.18 75)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: text-shimmer 4s linear infinite;
+}
+
+/* ─── Team Card Avatar ───────────────────────────────────── */
+.team-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 60px oklch(0.54 0.24 293 / 0.4);
+}
+
+/* ─── Section divider line ───────────────────────────────── */
+.section-line {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, oklch(0.54 0.24 293), oklch(0.82 0.18 75));
+  border-radius: 2px;
+}
+
+/* ─── Coming Soon blur ───────────────────────────────────── */
+.coming-soon-card .card-content {
+  filter: blur(3px);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ─── Input focus glow ───────────────────────────────────── */
+.contact-input:focus {
+  outline: none;
+  border-color: oklch(0.54 0.24 293 / 0.8);
+  box-shadow: 0 0 0 3px oklch(0.54 0.24 293 / 0.2);
+}
+
+/* ─── Noise overlay ──────────────────────────────────────── */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* ─── Social icon hover ──────────────────────────────────── */
+.social-icon {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 30px oklch(0.54 0.24 293 / 0.5);
+}
+
+/* ─── Hero entrance animations ───────────────────────────── */
+.hero-logo {
+  animation: scale-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.hero-title {
+  animation: float-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+}
+
+.hero-subtitle {
+  animation: float-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.75s both;
+}
+
+.hero-cta {
+  animation: float-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.0s both;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(0.07 0 0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.32 0.14 285);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.54 0.24 293);
+}
+
+/* ─── Ocean Animation Keyframes ──────────────────────────── */
+@keyframes ocean-shimmer {
+  0%, 100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.15) saturate(1.2);
+  }
+}
+
+@keyframes particle-rise {
+  0% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-120px) translateX(20px);
+    opacity: 0;
+  }
+}
+
+/* ─── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-logo, .hero-title, .hero-subtitle, .hero-cta,
+  .btn-glow, .gradient-text {
+    animation: none;
+  }
+}
