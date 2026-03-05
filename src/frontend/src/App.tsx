@@ -211,7 +211,7 @@ function useOceanCanvas(canvasRef: React.RefObject<HTMLCanvasElement | null>) {
     window.addEventListener("resize", resize);
 
     // ── Falling water streaks (vertical flow) ──
-    const STREAK_COUNT = 55;
+    const STREAK_COUNT = 70;
     type Streak = {
       x: number;
       y: number;
@@ -226,17 +226,17 @@ function useOceanCanvas(canvasRef: React.RefObject<HTMLCanvasElement | null>) {
     const streaks: Streak[] = Array.from({ length: STREAK_COUNT }, () => ({
       x: Math.random(),
       y: Math.random(),
-      speed: 0.0006 + Math.random() * 0.001,
-      length: 0.06 + Math.random() * 0.14,
-      alpha: 0.06 + Math.random() * 0.13,
-      width: 0.5 + Math.random() * 1.2,
+      speed: 0.0007 + Math.random() * 0.0012,
+      length: 0.08 + Math.random() * 0.18,
+      alpha: 0.28 + Math.random() * 0.38,
+      width: 0.8 + Math.random() * 1.8,
       hue: 265 + Math.floor(Math.random() * 55),
       waver: Math.random() * Math.PI * 2,
       waverSpeed: 0.0002 + Math.random() * 0.0003,
     }));
 
     // ── Slow horizontal ripple lines (water surface reflections) ──
-    const RIPPLE_COUNT = 14;
+    const RIPPLE_COUNT = 18;
     type Ripple = {
       y: number;
       phase: number;
@@ -250,12 +250,12 @@ function useOceanCanvas(canvasRef: React.RefObject<HTMLCanvasElement | null>) {
       phase: Math.random() * Math.PI * 2,
       speed: 0.00005 + Math.random() * 0.00008,
       amplitude: 0.006 + Math.random() * 0.012,
-      alpha: 0.03 + Math.random() * 0.06,
+      alpha: 0.18 + Math.random() * 0.22,
       hue: 270 + Math.floor(Math.random() * 45),
     }));
 
     // ── Subsurface glow blobs ──
-    const BLOB_COUNT = 6;
+    const BLOB_COUNT = 7;
     type Blob = {
       x: number;
       y: number;
@@ -269,8 +269,8 @@ function useOceanCanvas(canvasRef: React.RefObject<HTMLCanvasElement | null>) {
       y: 0.2 + Math.random() * 0.6,
       phase: Math.random() * Math.PI * 2,
       speed: 0.00015 + Math.random() * 0.0002,
-      radius: 0.15 + Math.random() * 0.2,
-      intensity: 0.05 + Math.random() * 0.07,
+      radius: 0.18 + Math.random() * 0.24,
+      intensity: 0.18 + Math.random() * 0.2,
     }));
 
     let t = 0;
@@ -281,10 +281,10 @@ function useOceanCanvas(canvasRef: React.RefObject<HTMLCanvasElement | null>) {
 
       // ── 1. Deep background ──
       const bg = ctx.createLinearGradient(0, 0, 0, height);
-      bg.addColorStop(0, "#02000e");
-      bg.addColorStop(0.4, "#060018");
-      bg.addColorStop(0.75, "#0c0030");
-      bg.addColorStop(1, "#04000f");
+      bg.addColorStop(0, "#04001a");
+      bg.addColorStop(0.4, "#08002a");
+      bg.addColorStop(0.75, "#120045");
+      bg.addColorStop(1, "#06001c");
       ctx.fillStyle = bg;
       ctx.fillRect(0, 0, width, height);
 
@@ -297,8 +297,8 @@ function useOceanCanvas(canvasRef: React.RefObject<HTMLCanvasElement | null>) {
         const rad = b.radius * Math.min(width, height);
         const g = ctx.createRadialGradient(bx, by, 0, bx, by, rad);
         const alpha = b.intensity * (0.85 + 0.15 * Math.sin(t * b.speed * 500));
-        g.addColorStop(0, `rgba(110,30,220,${alpha})`);
-        g.addColorStop(0.5, `rgba(60,10,140,${alpha * 0.4})`);
+        g.addColorStop(0, `rgba(130,40,255,${alpha})`);
+        g.addColorStop(0.5, `rgba(80,15,180,${alpha * 0.5})`);
         g.addColorStop(1, "rgba(0,0,0,0)");
         ctx.fillStyle = g;
         ctx.fillRect(bx - rad, by - rad, rad * 2, rad * 2);
@@ -354,7 +354,7 @@ function useOceanCanvas(canvasRef: React.RefObject<HTMLCanvasElement | null>) {
 
       // ── 5. Top vignette ──
       const vign = ctx.createLinearGradient(0, 0, 0, height * 0.3);
-      vign.addColorStop(0, "rgba(2,0,12,0.65)");
+      vign.addColorStop(0, "rgba(2,0,12,0.30)");
       vign.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle = vign;
       ctx.fillRect(0, 0, width, height * 0.3);
@@ -362,7 +362,7 @@ function useOceanCanvas(canvasRef: React.RefObject<HTMLCanvasElement | null>) {
       // ── 6. Bottom vignette ──
       const bvign = ctx.createLinearGradient(0, height * 0.75, 0, height);
       bvign.addColorStop(0, "rgba(0,0,0,0)");
-      bvign.addColorStop(1, "rgba(2,0,10,0.55)");
+      bvign.addColorStop(1, "rgba(2,0,10,0.28)");
       ctx.fillStyle = bvign;
       ctx.fillRect(0, height * 0.75, width, height * 0.25);
 
@@ -423,7 +423,7 @@ function HeroSection() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(2,0,10,0.55) 0%, rgba(5,0,20,0.35) 50%, rgba(5,0,16,0.75) 100%)",
+            "linear-gradient(to bottom, rgba(2,0,10,0.25) 0%, rgba(5,0,20,0.10) 50%, rgba(5,0,16,0.45) 100%)",
         }}
       />
       {/* Purple radial glow at center */}
@@ -431,7 +431,7 @@ function HeroSection() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 60%, rgba(100,20,200,0.12), transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 60%, rgba(130,30,220,0.18), transparent 70%)",
         }}
       />
 
