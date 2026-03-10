@@ -66,6 +66,7 @@ const NAV_LINKS = [
   { label: "Services", href: "#services" },
   { label: "Pricing", href: "#packages" },
   { label: "Portfolio", href: "#portfolio" },
+  { label: "Why Us", href: "#why-choose-us" },
   { label: "Team", href: "#team" },
   { label: "Contact", href: "#contact" },
 ];
@@ -1316,6 +1317,15 @@ function PricingSection() {
               service request form by providing the required details. Our team
               will review the request and respond within 24 hours.
             </p>
+            <p
+              className="font-body text-sm mt-3"
+              style={{ color: "oklch(0.72 0.22 293)" }}
+            >
+              All requests are forwarded to{" "}
+              <span className="font-semibold">
+                supportcapitalpartners@gmail.com
+              </span>
+            </p>
           </div>
 
           <div
@@ -1340,7 +1350,8 @@ function PricingSection() {
                   Request Sent!
                 </h4>
                 <p className="font-body text-muted-foreground">
-                  Our team will review your request and respond within 24 hours.
+                  Your request has been sent to our team. We will review it and
+                  respond within 24 hours via email or Discord.
                 </p>
                 <button
                   type="button"
@@ -1575,175 +1586,153 @@ function PricingSection() {
   );
 }
 
-/* ─── Our Story Section ───────────────────────────────────────── */
-function OurStorySection() {
-  const values = [
+/* ─── Why Choose Us Section ──────────────────────────────────── */
+function WhyChooseUsSection() {
+  const reasons = [
     {
-      icon: <Star size={16} />,
-      name: "Integrity",
-      desc: "We operate with full transparency and honesty.",
+      icon: "🏆",
+      title: "Proven Results",
+      desc: "We measure our success by your growth. Every strategy is built around tangible, measurable outcomes for your brand.",
     },
     {
-      icon: <TrendingUp size={16} />,
-      name: "Excellence",
-      desc: "We deliver professional results, every time.",
+      icon: "⚡",
+      title: "Fast Turnaround",
+      desc: "We respond within 24 hours and deliver projects on schedule — no delays, no excuses.",
     },
     {
-      icon: <Rocket size={16} />,
-      name: "Growth",
-      desc: "We measure our success by your growth.",
+      icon: "🎯",
+      title: "Tailored Strategy",
+      desc: "No cookie-cutter solutions. Every plan is custom-built around your specific goals, audience, and brand identity.",
     },
     {
-      icon: <Users size={16} />,
-      name: "Community",
-      desc: "We build lasting relationships with every client.",
+      icon: "💎",
+      title: "Premium Quality",
+      desc: "From content editing to full business consulting, we deliver agency-level quality at every tier.",
     },
-  ];
-
-  const stats = [
-    { value: "3+", label: "Plans Available" },
-    { value: "7+", label: "Custom Services" },
-    { value: "24h", label: "Response Time" },
-    { value: "100%", label: "Commitment" },
+    {
+      icon: "🤝",
+      title: "Long-Term Partnership",
+      desc: "We don't just complete projects — we build lasting relationships and grow alongside your business.",
+    },
+    {
+      icon: "🌐",
+      title: "Full-Service Agency",
+      desc: "Content, branding, marketing, web, and consulting — everything under one roof for seamless execution.",
+    },
   ];
 
   return (
     <section
-      id="our-story"
-      data-ocid="our-story.section"
+      id="why-choose-us"
+      data-ocid="why-choose-us.section"
       className="relative py-28 overflow-hidden"
     >
       <div
-        className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none"
+        className="absolute top-0 left-0 w-96 h-96 rounded-full pointer-events-none"
         style={{
           background: "oklch(0.54 0.24 293)",
-          filter: "blur(100px)",
+          filter: "blur(120px)",
           opacity: 0.06,
+        }}
+      />
+      <div
+        className="absolute bottom-0 right-0 w-80 h-80 rounded-full pointer-events-none"
+        style={{
+          background: "oklch(0.65 0.22 300)",
+          filter: "blur(100px)",
+          opacity: 0.05,
         }}
       />
 
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16 reveal">
           <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-4 block">
-            Who We Are
+            The CP Difference
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Our <span className="gradient-text">Story</span>
+            Why Choose <span className="gradient-text">Capital Partners</span>
           </h2>
-          <div className="section-line mx-auto mb-4" />
+          <div className="section-line mx-auto mb-6" />
+          <p className="font-body text-muted-foreground max-w-2xl mx-auto">
+            Hundreds of creators and businesses trust Capital Partners to drive
+            their growth. Here's what sets us apart from the rest.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div className="reveal flex flex-col gap-8">
-            <div>
-              <h3 className="font-display text-2xl font-bold text-foreground mb-4">
-                How Capital Partners Began
-              </h3>
-              <div className="flex flex-col gap-4">
-                <p className="font-body text-muted-foreground leading-relaxed">
-                  Capital Partners was founded with a single mission: to empower
-                  creators and businesses with the digital tools, strategies,
-                  and support they need to thrive in an increasingly competitive
-                  online world.
-                </p>
-                <p className="font-body text-muted-foreground leading-relaxed">
-                  What started as a small consulting initiative has grown into a
-                  full-service digital agency serving clients across content
-                  creation, brand development, and business growth. We believe
-                  every brand has the potential to dominate its space — and
-                  we&apos;re here to make that happen.
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <p className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-5">
-                Our Values
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {values.map((v) => (
-                  <div
-                    key={v.name}
-                    className="flex items-start gap-3 p-4 rounded-xl border"
-                    style={{
-                      background: "oklch(0.09 0.02 285 / 0.85)",
-                      borderColor: "oklch(0.22 0.04 285 / 0.5)",
-                    }}
-                  >
-                    <div
-                      className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{
-                        background: "oklch(0.54 0.24 293 / 0.15)",
-                        color: "oklch(0.72 0.22 293)",
-                      }}
-                    >
-                      {v.icon}
-                    </div>
-                    <div>
-                      <p className="font-heading font-bold text-sm text-foreground">
-                        {v.name}
-                      </p>
-                      <p className="font-body text-xs text-muted-foreground mt-0.5">
-                        {v.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="reveal" style={{ transitionDelay: "120ms" }}>
-            <div className="grid grid-cols-2 gap-5">
-              {stats.map((stat, i) => (
-                <div
-                  key={stat.label}
-                  data-ocid={`our-story.stat.${i + 1}`}
-                  className="flex flex-col items-center justify-center py-10 rounded-2xl border text-center"
-                  style={{
-                    background:
-                      i === 1
-                        ? "linear-gradient(160deg, oklch(0.13 0.06 285 / 0.95), oklch(0.09 0.04 280 / 0.95))"
-                        : "oklch(0.09 0.02 285 / 0.85)",
-                    borderColor:
-                      i === 1
-                        ? "oklch(0.65 0.22 300 / 0.5)"
-                        : "oklch(0.22 0.04 285 / 0.5)",
-                    boxShadow:
-                      i === 1 ? "0 0 40px oklch(0.65 0.22 300 / 0.15)" : "none",
-                  }}
-                >
-                  <span
-                    className="font-display text-4xl font-bold"
-                    style={{ color: "oklch(0.72 0.22 293)" }}
-                  >
-                    {stat.value}
-                  </span>
-                  <span className="font-heading text-xs text-muted-foreground mt-2 tracking-wide">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {reasons.map((reason, i) => (
             <div
-              className="mt-5 p-6 rounded-2xl border"
+              key={reason.title}
+              data-ocid={`why-choose-us.item.${i + 1}`}
+              className="reveal flex flex-col gap-4 p-7 rounded-2xl border transition-all duration-300 hover:scale-[1.02]"
               style={{
-                background: "oklch(0.09 0.03 285 / 0.9)",
-                borderColor: "oklch(0.54 0.24 293 / 0.25)",
-                boxShadow: "0 0 40px oklch(0.54 0.24 293 / 0.08)",
+                background:
+                  i === 1 || i === 4
+                    ? "linear-gradient(160deg, oklch(0.13 0.06 285 / 0.95), oklch(0.09 0.04 280 / 0.95))"
+                    : "oklch(0.09 0.02 285 / 0.85)",
+                borderColor:
+                  i === 1 || i === 4
+                    ? "oklch(0.65 0.22 300 / 0.4)"
+                    : "oklch(0.22 0.04 285 / 0.5)",
+                boxShadow:
+                  i === 1 || i === 4
+                    ? "0 0 40px oklch(0.65 0.22 300 / 0.1)"
+                    : "none",
+                transitionDelay: `${i * 60}ms`,
               }}
             >
-              <p className="font-display text-lg font-bold text-foreground mb-2">
-                Your Capital, Our Strategy
-              </p>
-              <p className="font-body text-sm text-muted-foreground">
-                Every service we offer is designed to move your brand forward.
-                From content creation to full business consulting, Capital
-                Partners is your long-term growth partner.
-              </p>
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
+                style={{ background: "oklch(0.54 0.24 293 / 0.12)" }}
+              >
+                {reason.icon}
+              </div>
+              <div>
+                <h3 className="font-heading font-bold text-foreground text-base mb-2">
+                  {reason.title}
+                </h3>
+                <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                  {reason.desc}
+                </p>
+              </div>
             </div>
-          </div>
+          ))}
+        </div>
+
+        <div
+          className="mt-14 reveal mx-auto max-w-3xl p-8 rounded-2xl border text-center"
+          style={{
+            background: "oklch(0.09 0.03 285 / 0.9)",
+            borderColor: "oklch(0.54 0.24 293 / 0.3)",
+            boxShadow: "0 0 60px oklch(0.54 0.24 293 / 0.08)",
+          }}
+        >
+          <p className="font-display text-2xl font-bold text-foreground mb-3">
+            Your Capital, Our Strategy
+          </p>
+          <p className="font-body text-muted-foreground leading-relaxed">
+            Ready to take your brand to the next level? Join the growing list of
+            businesses that trust Capital Partners as their long-term growth
+            partner.
+          </p>
+          <button
+            type="button"
+            data-ocid="why-choose-us.cta.button"
+            onClick={() => {
+              document
+                .querySelector("#request-form")
+                ?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+            className="inline-block mt-6 px-8 py-3 rounded-xl font-heading font-bold text-sm transition-opacity hover:opacity-90"
+            style={{
+              background:
+                "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
+              color: "oklch(0.97 0 0)",
+              boxShadow: "0 0 30px oklch(0.54 0.24 293 / 0.35)",
+            }}
+          >
+            Get Started Today
+          </button>
         </div>
       </div>
     </section>
@@ -2712,7 +2701,7 @@ export default function App() {
         <ServicesSection />
         <PricingSection />
         <PortfolioSection />
-        <OurStorySection />
+        <WhyChooseUsSection />
         <TeamSection />
         <ContactSection />
       </main>
