@@ -112,9 +112,10 @@ function Navbar() {
           className="flex items-center gap-3 group"
         >
           <img
-            src="/assets/uploads/IMG_5302-1-1.png"
+            src="/assets/uploads/IMG_5401-1.jpeg"
             alt="Capital Partners Logo"
             className="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300"
+            style={{ mixBlendMode: "screen" }}
           />
           <span className="font-heading font-bold text-lg tracking-wide">
             <span className="gradient-text">Capital</span>{" "}
@@ -450,11 +451,12 @@ function HeroSection() {
               }}
             />
             <img
-              src="/assets/uploads/IMG_5302-1-1.png"
+              src="/assets/uploads/IMG_5401-1.jpeg"
               alt="Capital Partners"
               className="relative w-36 h-36 md:w-48 md:h-48 object-contain drop-shadow-2xl"
               style={{
                 filter: "drop-shadow(0 0 30px oklch(0.54 0.24 293 / 0.6))",
+                mixBlendMode: "screen",
               }}
             />
           </div>
@@ -2248,310 +2250,6 @@ const SOCIAL_LINKS = [
   },
 ];
 
-function ContactSection() {
-  const { actor } = useActor();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitState, setSubmitState] = useState<"idle" | "success" | "error">(
-    "idle",
-  );
-
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
-      e.preventDefault();
-      if (!name.trim() || !email.trim() || !message.trim()) {
-        toast.error("Please fill in all fields.");
-        return;
-      }
-      if (!actor) {
-        toast.error("Service not available. Please try again.");
-        return;
-      }
-
-      setIsSubmitting(true);
-      setSubmitState("idle");
-      try {
-        await actor.submitContactMessage(
-          name.trim(),
-          email.trim(),
-          message.trim(),
-        );
-        setSubmitState("success");
-        setName("");
-        setEmail("");
-        setMessage("");
-        toast.success("Message sent successfully! We'll be in touch soon.");
-      } catch {
-        setSubmitState("error");
-        toast.error("Failed to send message. Please try again.");
-      } finally {
-        setIsSubmitting(false);
-      }
-    },
-    [actor, name, email, message],
-  );
-
-  return (
-    <section
-      id="contact"
-      data-ocid="contact.section"
-      className="relative py-28 overflow-hidden"
-      style={{ background: "oklch(0.07 0.01 280 / 0.3)" }}
-    >
-      {/* Ambient glow */}
-      <div
-        className="absolute bottom-0 right-0 w-96 h-96 rounded-full opacity-10 pointer-events-none"
-        style={{
-          background: "oklch(0.54 0.24 293)",
-          filter: "blur(100px)",
-        }}
-      />
-
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-16 reveal">
-          <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-4 block">
-            Let's Connect
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Get In <span className="gradient-text">Touch</span>
-          </h2>
-          <div className="section-line mx-auto mb-4" />
-          <p className="font-body text-muted-foreground max-w-lg mx-auto">
-            Ready to build something extraordinary? Reach out and let's discuss
-            how Capital Partners can elevate your vision.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="reveal-left">
-            <form
-              onSubmit={handleSubmit}
-              data-ocid="contact.modal"
-              className="space-y-5 p-8 rounded-2xl border"
-              style={{
-                background: "oklch(0.09 0.02 285 / 0.8)",
-                borderColor: "oklch(0.54 0.24 293 / 0.2)",
-              }}
-              noValidate
-            >
-              <h3 className="font-heading text-xl font-bold text-foreground mb-6 flex items-center gap-2">
-                <MessageSquare size={20} className="text-primary" />
-                Send Us a Message
-              </h3>
-
-              <div>
-                <label
-                  htmlFor="contact-name"
-                  className="font-heading text-sm font-medium text-muted-foreground block mb-2"
-                >
-                  Your Name
-                </label>
-                <Input
-                  id="contact-name"
-                  data-ocid="contact.input"
-                  type="text"
-                  placeholder="Abdul Ahad"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  disabled={isSubmitting}
-                  required
-                  autoComplete="name"
-                  className="contact-input font-body bg-transparent border-border/60 focus:border-primary/60 text-foreground placeholder:text-muted-foreground/50 h-11"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="contact-email"
-                  className="font-heading text-sm font-medium text-muted-foreground block mb-2"
-                >
-                  Email Address
-                </label>
-                <Input
-                  id="contact-email"
-                  data-ocid="contact.input"
-                  type="email"
-                  placeholder="you@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  disabled={isSubmitting}
-                  required
-                  autoComplete="email"
-                  className="contact-input font-body bg-transparent border-border/60 focus:border-primary/60 text-foreground placeholder:text-muted-foreground/50 h-11"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="contact-message"
-                  className="font-heading text-sm font-medium text-muted-foreground block mb-2"
-                >
-                  Message
-                </label>
-                <Textarea
-                  id="contact-message"
-                  data-ocid="contact.textarea"
-                  placeholder="Tell us about your project or inquiry..."
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  disabled={isSubmitting}
-                  required
-                  rows={5}
-                  className="contact-input font-body bg-transparent border-border/60 focus:border-primary/60 text-foreground placeholder:text-muted-foreground/50 resize-none"
-                />
-              </div>
-
-              {/* Success/Error state */}
-              {submitState === "success" && (
-                <div
-                  data-ocid="contact.success_state"
-                  className="flex items-center gap-3 p-4 rounded-xl border"
-                  style={{
-                    background: "oklch(0.40 0.15 150 / 0.1)",
-                    borderColor: "oklch(0.40 0.15 150 / 0.3)",
-                  }}
-                >
-                  <CheckCircle2
-                    size={18}
-                    style={{ color: "oklch(0.60 0.15 150)" }}
-                  />
-                  <span
-                    className="font-heading text-sm"
-                    style={{ color: "oklch(0.60 0.15 150)" }}
-                  >
-                    Message sent! We'll get back to you shortly.
-                  </span>
-                </div>
-              )}
-
-              {submitState === "error" && (
-                <div
-                  data-ocid="contact.error_state"
-                  className="flex items-center gap-3 p-4 rounded-xl border"
-                  style={{
-                    background: "oklch(0.577 0.245 27.325 / 0.1)",
-                    borderColor: "oklch(0.577 0.245 27.325 / 0.3)",
-                  }}
-                >
-                  <X size={18} className="text-destructive" />
-                  <span className="font-heading text-sm text-destructive">
-                    Failed to send. Please try again.
-                  </span>
-                </div>
-              )}
-
-              <button
-                type="submit"
-                data-ocid="contact.submit_button"
-                disabled={isSubmitting}
-                className="btn-glow w-full py-3 rounded-xl font-heading font-bold text-base text-foreground disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-opacity"
-                style={{
-                  background:
-                    "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
-                }}
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 size={18} className="animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Mail size={18} />
-                    Send Message
-                  </>
-                )}
-              </button>
-              <p className="text-xs text-muted-foreground text-center mt-2">
-                Messages are forwarded to officialahfahtrades@gmail.com
-              </p>
-            </form>
-          </div>
-
-          {/* Social Links & Info */}
-          <div className="reveal-right flex flex-col justify-center gap-8">
-            {/* Direct contact */}
-            <div>
-              <h3 className="font-heading text-xl font-bold text-foreground mb-6 flex items-center gap-2">
-                <Globe size={20} className="text-primary" />
-                Find Us Online
-              </h3>
-              <p className="font-body text-muted-foreground text-sm mb-8">
-                Follow Capital Partners across all platforms for the latest
-                updates, insights, and opportunities.
-              </p>
-            </div>
-
-            {/* Social icons grid */}
-            <div className="grid grid-cols-3 gap-4">
-              {SOCIAL_LINKS.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target={
-                    social.href.startsWith("mailto:") ? undefined : "_blank"
-                  }
-                  rel={
-                    social.href.startsWith("mailto:")
-                      ? undefined
-                      : "noopener noreferrer"
-                  }
-                  data-ocid={`contact.social.${social.label.toLowerCase().replace(/[^a-z0-9]/g, "")}.link`}
-                  aria-label={social.label}
-                  className="social-icon flex flex-col items-center justify-center gap-2 p-5 rounded-2xl border text-center group"
-                  style={{
-                    background: "oklch(0.09 0.02 285 / 0.8)",
-                    borderColor: "oklch(0.54 0.24 293 / 0.2)",
-                    color: social.color,
-                  }}
-                >
-                  <span className="group-hover:scale-110 transition-transform duration-200">
-                    {social.icon}
-                  </span>
-                  <span className="font-heading text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-                    {social.label}
-                  </span>
-                </a>
-              ))}
-            </div>
-
-            {/* Email direct */}
-            <div
-              className="flex items-center gap-4 p-5 rounded-2xl border"
-              style={{
-                background: "oklch(0.09 0.02 285 / 0.8)",
-                borderColor: "oklch(0.54 0.24 293 / 0.15)",
-              }}
-            >
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-primary"
-                style={{ background: "oklch(0.54 0.24 293 / 0.15)" }}
-              >
-                <Mail size={18} />
-              </div>
-              <div>
-                <p className="font-heading text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-0.5">
-                  Email Us Directly
-                </p>
-                <a
-                  href="mailto:officialcapitalpartners@gmail.com"
-                  className="font-body text-sm text-foreground hover:text-primary transition-colors"
-                >
-                  officialcapitalpartners@gmail.com
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ─── Footer ────────────────────────────────────────────────── */
 function Footer() {
   const year = new Date().getFullYear();
@@ -2574,9 +2272,10 @@ function Footer() {
           {/* Logo */}
           <div className="flex items-center gap-3">
             <img
-              src="/assets/uploads/IMG_5302-1-1.png"
+              src="/assets/uploads/IMG_5401-1.jpeg"
               alt="Capital Partners"
               className="w-10 h-10 object-contain"
+              style={{ mixBlendMode: "screen" }}
             />
             <span className="font-heading font-bold text-xl">
               <span className="gradient-text">Capital</span>{" "}
@@ -2703,7 +2402,6 @@ export default function App() {
         <PortfolioSection />
         <WhyChooseUsSection />
         <TeamSection />
-        <ContactSection />
       </main>
 
       <Footer />
