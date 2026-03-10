@@ -64,7 +64,7 @@ const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
-  { label: "Packages", href: "#packages" },
+  { label: "Pricing", href: "#packages" },
   { label: "Portfolio", href: "#portfolio" },
   { label: "Team", href: "#team" },
   { label: "Contact", href: "#contact" },
@@ -932,64 +932,169 @@ function ServicesSection() {
   );
 }
 
-/* ─── Packages Section ──────────────────────────────────────── */
-interface PackageItem {
-  name: string;
-  tagline: string;
-  icon: React.ReactNode;
-  features: string[];
-  highlight: boolean;
-  color: string;
-}
+/* ─── Pricing Section ─────────────────────────────────────────── */
+function PricingSection() {
+  const [reqForm, setReqForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    discord: "",
+    business: "",
+    plan: "",
+    details: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const { actor } = useActor();
 
-const PACKAGES: PackageItem[] = [
-  {
-    name: "Basic",
-    tagline: "Start your journey",
-    icon: <Zap size={20} />,
-    features: [
-      "Business consultation (1 session/month)",
-      "Social media management (1 platform)",
-      "Monthly performance report",
-      "Email support",
-    ],
-    highlight: false,
-    color: "oklch(0.54 0.24 293)",
-  },
-  {
-    name: "Professional",
-    tagline: "Accelerate growth",
-    icon: <TrendingUp size={22} />,
-    features: [
-      "Business consultation (4 sessions/month)",
-      "Multi-platform promotions",
-      "Brand strategy development",
-      "Freelancer network access",
-      "Bi-weekly performance reports",
-      "Priority support",
-    ],
-    highlight: true,
-    color: "oklch(0.65 0.22 300)",
-  },
-  {
-    name: "Pro",
-    tagline: "Dominate your market",
-    icon: <Rocket size={22} />,
-    features: [
-      "Unlimited consultations",
-      "Full-suite management & promotions",
-      "Investment advisory",
-      "Dedicated account manager",
-      "Custom AI tools integration",
-      "Weekly in-depth reporting",
-      "24/7 VIP support",
-    ],
-    highlight: false,
-    color: "oklch(0.72 0.16 75)",
-  },
-];
+  const handleRequestSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      const { name, email, phone, discord, business, plan, details } = reqForm;
+      if (!name.trim() || !email.trim() || !plan) {
+        toast.error("Please fill in Name, Email, and select a Service Plan.");
+        return;
+      }
+      setIsSubmitting(true);
+      try {
+        if (actor) {
+          const fullMessage = `Phone/WhatsApp: ${phone}\nDiscord: ${discord}\nBusiness: ${business}\nPlan: ${plan}\n\nProject Details:\n${details}`;
+          await actor.submitContactMessage(name, email, fullMessage);
+        }
+        setSubmitted(true);
+        toast.success("Request sent! We'll respond within 24 hours.");
+        setReqForm({
+          name: "",
+          email: "",
+          phone: "",
+          discord: "",
+          business: "",
+          plan: "",
+          details: "",
+        });
+      } catch {
+        toast.error("Failed to send. Please try again or reach us on Discord.");
+      } finally {
+        setIsSubmitting(false);
+      }
+    },
+    [reqForm, actor],
+  );
 
-function PackagesSection() {
+  const plans = [
+    {
+      name: "Creator Launch Plan",
+      badge: "Starter",
+      price: "$150",
+      bestFor:
+        "New creators, startups, and small brands starting their online presence.",
+      overview:
+        "This plan helps individuals and early-stage brands establish a strong digital presence through professional content support and basic growth strategies.",
+      services: [
+        {
+          name: "Content Editing",
+          desc: "Professional editing for short-form content such as reels, shorts, and social clips.",
+        },
+        {
+          name: "Content Clipping",
+          desc: "Creation of short clips from long-form content for social media distribution.",
+        },
+        {
+          name: "Posting Strategy",
+          desc: "Guidance on when and how to post content for better reach and engagement.",
+        },
+        {
+          name: "Growth Guidance",
+          desc: "Basic strategies to help grow social media accounts and build audience engagement.",
+        },
+        {
+          name: "Community Support",
+          desc: "Advice on interacting with audiences and building a small but active community.",
+        },
+      ],
+      support: "Standard — Response within 24 hours",
+      highlight: false,
+      color: "oklch(0.54 0.24 293)",
+    },
+    {
+      name: "Brand Growth Plan",
+      badge: "Most Popular",
+      price: "$300",
+      bestFor:
+        "Growing creators, influencers, and brands looking to expand their reach.",
+      overview:
+        "This plan focuses on improving brand visibility, strengthening content quality, and implementing structured marketing strategies.",
+      services: [
+        {
+          name: "Content Editing & Clipping",
+          desc: "Advanced editing and short-form content creation for social media platforms.",
+        },
+        {
+          name: "Social Media Strategy",
+          desc: "Planning and guidance for improving brand consistency across platforms.",
+        },
+        {
+          name: "Promotion Planning",
+          desc: "Strategies for promoting content and increasing audience reach.",
+        },
+        {
+          name: "Content Optimization",
+          desc: "Advice on improving titles, descriptions, and engagement elements.",
+        },
+        {
+          name: "Brand Positioning",
+          desc: "Guidance on presenting the brand professionally online.",
+        },
+      ],
+      support: "Priority — Faster response times",
+      highlight: true,
+      color: "oklch(0.65 0.22 300)",
+    },
+    {
+      name: "Business Accelerator Plan",
+      badge: "Premium",
+      price: "$600",
+      bestFor: "Businesses and creators who want full digital growth support.",
+      overview:
+        "This premium plan provides comprehensive support including content production, marketing strategies, and business growth consulting.",
+      services: [
+        {
+          name: "Full Content Production Support",
+          desc: "Professional editing and clipping for multiple types of content.",
+        },
+        {
+          name: "Marketing Strategy Development",
+          desc: "Structured marketing planning to improve brand reach and audience growth.",
+        },
+        {
+          name: "Growth Consulting",
+          desc: "Advice and strategy discussions to help scale the business.",
+        },
+        {
+          name: "Campaign Planning",
+          desc: "Support with running digital promotion campaigns.",
+        },
+        {
+          name: "Priority Service",
+          desc: "Dedicated support and faster delivery.",
+        },
+      ],
+      support: "Highest Priority Support",
+      highlight: false,
+      color: "oklch(0.72 0.16 75)",
+    },
+  ];
+
+  const customServices = [
+    { name: "Video Editing", range: "$50 – $300" },
+    { name: "Content Clipping", range: "$20 – $100" },
+    { name: "Social Media Management", range: "$200 – $600" },
+    { name: "Discord Server Setup & Management", range: "$50 – $300" },
+    { name: "Website Development", range: "$500 – $3,000" },
+    { name: "Promotion Campaigns", range: "$50 – $600" },
+    { name: "Business & Marketing Consulting", range: "$300 – $3,000" },
+  ];
+
   return (
     <section
       id="packages"
@@ -1005,177 +1110,641 @@ function PackagesSection() {
       />
 
       <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
         <div className="text-center mb-16 reveal">
           <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-4 block">
-            Investment Tiers
+            Monthly Plans
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Our <span className="gradient-text">Packages</span>
+            Services &amp; <span className="gradient-text">Pricing</span>
           </h2>
           <div className="section-line mx-auto mb-4" />
           <p className="font-body text-muted-foreground max-w-xl mx-auto">
-            Choose the package that fits your ambition. Pricing details are
-            being finalized and will be revealed at launch.
+            Choose the plan that fits your goals. All plans are billed monthly
+            with no hidden fees.
           </p>
         </div>
 
-        {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-          {PACKAGES.map((pkg, i) => (
+          {plans.map((plan, i) => (
             <div
-              key={pkg.name}
+              key={plan.name}
               data-ocid={`packages.card.${i + 1}`}
               className="reveal relative rounded-2xl border flex flex-col overflow-hidden"
               style={{
-                background: pkg.highlight
+                background: plan.highlight
                   ? "linear-gradient(160deg, oklch(0.13 0.06 285 / 0.95), oklch(0.09 0.04 280 / 0.95))"
                   : "oklch(0.09 0.02 285 / 0.85)",
-                borderColor: pkg.highlight
-                  ? `${pkg.color}66`
+                borderColor: plan.highlight
+                  ? `${plan.color}66`
                   : "oklch(0.22 0.04 285 / 0.5)",
-                boxShadow: pkg.highlight
-                  ? `0 0 60px ${pkg.color}28, 0 0 0 1px ${pkg.color}44`
+                boxShadow: plan.highlight
+                  ? `0 0 60px ${plan.color}28, 0 0 0 1px ${plan.color}44`
                   : "none",
                 transitionDelay: `${i * 80}ms`,
               }}
             >
-              {/* Most Popular badge */}
-              {pkg.highlight && (
-                <div
-                  className="text-center py-2 font-heading font-bold text-xs tracking-widest uppercase"
-                  style={{
-                    background: `linear-gradient(90deg, ${pkg.color}55, ${pkg.color}33)`,
-                    color: pkg.color,
-                    borderBottom: `1px solid ${pkg.color}44`,
-                  }}
-                >
-                  ★ Most Popular
-                </div>
-              )}
+              <div
+                className="text-center py-2 font-heading font-bold text-xs tracking-widest uppercase"
+                style={{
+                  background: plan.highlight
+                    ? `linear-gradient(90deg, ${plan.color}55, ${plan.color}33)`
+                    : `${plan.color}18`,
+                  color: plan.color,
+                  borderBottom: `1px solid ${plan.color}44`,
+                }}
+              >
+                {plan.highlight && "★ "}
+                {plan.badge}
+              </div>
 
-              <div className="p-8 flex flex-col gap-6 flex-1">
-                {/* Icon + name */}
-                <div className="flex items-center gap-3">
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{
-                      background: `${pkg.color}20`,
-                      border: `1px solid ${pkg.color}44`,
-                      color: pkg.color,
-                    }}
-                  >
-                    {pkg.icon}
-                  </div>
-                  <div>
-                    <h3 className="font-display text-xl font-bold text-foreground">
-                      {pkg.name}
-                    </h3>
-                    <p className="font-heading text-xs text-muted-foreground">
-                      {pkg.tagline}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Blurred price */}
-                <div className="relative">
-                  <div
-                    className="flex items-end gap-1 select-none"
-                    style={{ filter: "blur(8px)", userSelect: "none" }}
-                    aria-hidden="true"
-                  >
+              <div className="p-8 flex flex-col gap-5 flex-1">
+                <div>
+                  <h3 className="font-display text-xl font-bold text-foreground mb-1">
+                    {plan.name}
+                  </h3>
+                  <div className="flex items-end gap-1.5 mb-2">
                     <span
                       className="font-display text-4xl font-bold"
-                      style={{ color: pkg.color }}
+                      style={{ color: plan.color }}
                     >
-                      $XXX
+                      {plan.price}
                     </span>
-                    <span className="font-heading text-sm text-muted-foreground mb-2">
+                    <span className="font-heading text-sm text-muted-foreground mb-1.5">
                       / month
                     </span>
                   </div>
-                  <span
-                    className="absolute inset-0 flex items-center font-heading font-semibold text-xs px-3 py-1 rounded-full tracking-widest uppercase w-fit h-fit my-auto"
-                    style={{
-                      background: "oklch(0.54 0.24 293 / 0.15)",
-                      borderColor: "oklch(0.54 0.24 293 / 0.4)",
-                      border: "1px solid",
-                      color: "oklch(0.72 0.22 293)",
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                    }}
-                  >
-                    <Lock size={10} className="mr-1.5" />
-                    Coming Soon
-                  </span>
+                  <p className="font-body text-xs text-muted-foreground">
+                    <span className="font-semibold text-foreground/70">
+                      Best for:{" "}
+                    </span>
+                    {plan.bestFor}
+                  </p>
                 </div>
 
-                {/* Features list */}
-                <ul className="flex flex-col gap-3 flex-1">
-                  {pkg.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
-                      <CheckCircle2
-                        size={15}
-                        className="flex-shrink-0 mt-0.5"
-                        style={{ color: pkg.color }}
-                      />
-                      <span className="font-body text-sm text-muted-foreground leading-snug">
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <p
+                  className="font-body text-sm text-muted-foreground border-l-2 pl-3"
+                  style={{ borderColor: `${plan.color}66` }}
+                >
+                  {plan.overview}
+                </p>
 
-                {/* CTA */}
+                <div className="flex-1">
+                  <p
+                    className="font-heading text-xs font-bold tracking-widest uppercase mb-3"
+                    style={{ color: plan.color }}
+                  >
+                    Services Included
+                  </p>
+                  <ul className="flex flex-col gap-3">
+                    {plan.services.map((svc) => (
+                      <li key={svc.name} className="flex items-start gap-3">
+                        <CheckCircle2
+                          size={15}
+                          className="flex-shrink-0 mt-0.5"
+                          style={{ color: plan.color }}
+                        />
+                        <span className="font-body text-sm text-foreground/90 leading-snug">
+                          <span className="font-semibold">{svc.name}</span>
+                          {" — "}
+                          <span className="text-muted-foreground">
+                            {svc.desc}
+                          </span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div
+                  className="mt-auto py-2 px-3 rounded-lg font-heading text-xs font-semibold text-center"
+                  style={{
+                    background: `${plan.color}14`,
+                    border: `1px solid ${plan.color}40`,
+                    color: plan.color,
+                  }}
+                >
+                  {plan.support}
+                </div>
+
                 <button
                   type="button"
                   data-ocid={`packages.cta.button.${i + 1}`}
                   onClick={() => {
-                    const contact = document.querySelector("#contact");
-                    if (contact) {
+                    const el = document.querySelector("#request-form");
+                    if (el) {
                       const top =
-                        contact.getBoundingClientRect().top +
-                        window.scrollY -
-                        80;
+                        el.getBoundingClientRect().top + window.scrollY - 100;
                       window.scrollTo({ top, behavior: "smooth" });
                     }
+                    setReqForm((prev) => ({ ...prev, plan: plan.name }));
                   }}
                   className="w-full py-3 rounded-xl font-heading font-bold text-sm transition-all duration-200 hover:opacity-90"
                   style={
-                    pkg.highlight
+                    plan.highlight
                       ? {
                           background:
                             "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
                           color: "oklch(0.97 0 0)",
-                          boxShadow: `0 0 30px ${pkg.color}44`,
+                          boxShadow: `0 0 30px ${plan.color}44`,
                         }
                       : {
-                          background: `${pkg.color}18`,
-                          border: `1px solid ${pkg.color}44`,
-                          color: pkg.color,
+                          background: `${plan.color}18`,
+                          border: `1px solid ${plan.color}44`,
+                          color: plan.color,
                         }
                   }
                 >
-                  Get in Touch
+                  Get Started
                 </button>
               </div>
             </div>
           ))}
         </div>
 
-        <p className="text-center font-heading text-sm text-muted-foreground mt-10 reveal">
-          <span
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border"
+        <div className="mt-20 reveal">
+          <div className="text-center mb-10">
+            <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3 block">
+              One-Time Projects
+            </span>
+            <h3 className="font-display text-3xl font-bold text-foreground mb-2">
+              Custom Services
+            </h3>
+            <div className="section-line mx-auto mb-4" />
+            <p className="font-body text-muted-foreground max-w-2xl mx-auto">
+              Clients who require specific services can request individual
+              projects. Pricing depends on the project scope and requirements.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {customServices.map((svc, i) => (
+              <div
+                key={svc.name}
+                data-ocid={`custom.service.item.${i + 1}`}
+                className="reveal flex flex-col gap-2 p-5 rounded-xl border"
+                style={{
+                  background: "oklch(0.09 0.02 285 / 0.85)",
+                  borderColor: "oklch(0.22 0.04 285 / 0.5)",
+                  transitionDelay: `${i * 50}ms`,
+                }}
+              >
+                <p className="font-heading font-semibold text-sm text-foreground/90">
+                  {svc.name}
+                </p>
+                <p
+                  className="font-display text-lg font-bold"
+                  style={{ color: "oklch(0.65 0.22 300)" }}
+                >
+                  {svc.range}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div id="request-form" className="mt-20 reveal">
+          <div className="text-center mb-10">
+            <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3 block">
+              Get Started Today
+            </span>
+            <h3 className="font-display text-3xl font-bold text-foreground mb-2">
+              Request Our Services
+            </h3>
+            <div className="section-line mx-auto mb-4" />
+            <p className="font-body text-muted-foreground max-w-2xl mx-auto">
+              To purchase or request a service, clients must complete the
+              service request form by providing the required details. Our team
+              will review the request and respond within 24 hours.
+            </p>
+          </div>
+
+          <div
+            className="max-w-2xl mx-auto rounded-2xl border p-8"
             style={{
-              borderColor: "oklch(0.54 0.24 293 / 0.2)",
-              background: "oklch(0.54 0.24 293 / 0.05)",
+              background: "oklch(0.09 0.03 285 / 0.9)",
+              borderColor: "oklch(0.54 0.24 293 / 0.25)",
+              boxShadow: "0 0 60px oklch(0.54 0.24 293 / 0.08)",
             }}
           >
-            <Star size={12} className="text-primary" />
-            Pricing will be announced at launch — contact us for early access
-            <Star size={12} className="text-primary" />
+            {submitted ? (
+              <div
+                data-ocid="request.success_state"
+                className="text-center py-12"
+              >
+                <CheckCircle2
+                  size={48}
+                  className="mx-auto mb-4"
+                  style={{ color: "oklch(0.65 0.22 145)" }}
+                />
+                <h4 className="font-display text-2xl font-bold text-foreground mb-2">
+                  Request Sent!
+                </h4>
+                <p className="font-body text-muted-foreground">
+                  Our team will review your request and respond within 24 hours.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setSubmitted(false)}
+                  className="mt-6 px-6 py-2 rounded-xl font-heading font-semibold text-sm"
+                  style={{
+                    background: "oklch(0.54 0.24 293 / 0.2)",
+                    border: "1px solid oklch(0.54 0.24 293 / 0.4)",
+                    color: "oklch(0.72 0.22 293)",
+                  }}
+                >
+                  Submit Another Request
+                </button>
+              </div>
+            ) : (
+              <form
+                onSubmit={handleRequestSubmit}
+                className="flex flex-col gap-5"
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-2">
+                    <label
+                      htmlFor="req-name"
+                      className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+                    >
+                      Name *
+                    </label>
+                    <Input
+                      id="req-name"
+                      data-ocid="request.name.input"
+                      placeholder="Your full name"
+                      value={reqForm.name}
+                      onChange={(e) =>
+                        setReqForm((p) => ({ ...p, name: e.target.value }))
+                      }
+                      className="bg-transparent border-border/60 focus:border-primary"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label
+                      htmlFor="req-email"
+                      className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+                    >
+                      Email Address *
+                    </label>
+                    <Input
+                      id="req-email"
+                      data-ocid="request.email.input"
+                      type="email"
+                      placeholder="your@email.com"
+                      value={reqForm.email}
+                      onChange={(e) =>
+                        setReqForm((p) => ({ ...p, email: e.target.value }))
+                      }
+                      className="bg-transparent border-border/60 focus:border-primary"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label
+                      htmlFor="req-phone"
+                      className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+                    >
+                      Phone / WhatsApp
+                    </label>
+                    <Input
+                      id="req-phone"
+                      data-ocid="request.phone.input"
+                      placeholder="+1 234 567 8900"
+                      value={reqForm.phone}
+                      onChange={(e) =>
+                        setReqForm((p) => ({ ...p, phone: e.target.value }))
+                      }
+                      className="bg-transparent border-border/60 focus:border-primary"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label
+                      htmlFor="req-discord"
+                      className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+                    >
+                      Discord Username
+                    </label>
+                    <Input
+                      id="req-discord"
+                      data-ocid="request.discord.input"
+                      placeholder="username#0000"
+                      value={reqForm.discord}
+                      onChange={(e) =>
+                        setReqForm((p) => ({ ...p, discord: e.target.value }))
+                      }
+                      className="bg-transparent border-border/60 focus:border-primary"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label
+                    htmlFor="req-business"
+                    className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+                  >
+                    Business Name
+                  </label>
+                  <Input
+                    id="req-business"
+                    data-ocid="request.business.input"
+                    placeholder="Your business or brand name"
+                    value={reqForm.business}
+                    onChange={(e) =>
+                      setReqForm((p) => ({ ...p, business: e.target.value }))
+                    }
+                    className="bg-transparent border-border/60 focus:border-primary"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label
+                    htmlFor="req-plan"
+                    className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+                  >
+                    Selected Service Plan *
+                  </label>
+                  <select
+                    id="req-plan"
+                    data-ocid="request.plan.select"
+                    value={reqForm.plan}
+                    onChange={(e) =>
+                      setReqForm((p) => ({ ...p, plan: e.target.value }))
+                    }
+                    className="w-full px-4 py-2.5 rounded-lg font-body text-sm text-foreground border"
+                    style={{
+                      background: "oklch(0.08 0.02 285)",
+                      borderColor: "oklch(0.22 0.04 285 / 0.6)",
+                    }}
+                    required
+                  >
+                    <option value="" disabled>
+                      Select a plan or service
+                    </option>
+                    <option value="Creator Launch Plan">
+                      Creator Launch Plan — $150/mo
+                    </option>
+                    <option value="Brand Growth Plan">
+                      Brand Growth Plan — $300/mo
+                    </option>
+                    <option value="Business Accelerator Plan">
+                      Business Accelerator Plan — $600/mo
+                    </option>
+                    <option value="Custom Service">
+                      Custom Service (One-Time Project)
+                    </option>
+                  </select>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label
+                    htmlFor="req-details"
+                    className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+                  >
+                    Project Details
+                  </label>
+                  <Textarea
+                    id="req-details"
+                    data-ocid="request.details.textarea"
+                    placeholder="Describe your project, goals, and any specific requirements..."
+                    value={reqForm.details}
+                    onChange={(e) =>
+                      setReqForm((p) => ({ ...p, details: e.target.value }))
+                    }
+                    rows={5}
+                    className="bg-transparent border-border/60 focus:border-primary resize-none"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  data-ocid="request.submit.button"
+                  disabled={isSubmitting}
+                  className="w-full py-3 font-heading font-bold text-sm"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
+                    color: "oklch(0.97 0 0)",
+                    boxShadow: "0 0 30px oklch(0.54 0.24 293 / 0.4)",
+                  }}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />{" "}
+                      Sending...
+                    </>
+                  ) : (
+                    "Send Request"
+                  )}
+                </Button>
+              </form>
+            )}
+
+            <div
+              className="mt-6 flex flex-col sm:flex-row items-center gap-3 p-4 rounded-xl border text-center sm:text-left"
+              style={{
+                background: "oklch(0.60 0.24 270 / 0.08)",
+                borderColor: "oklch(0.60 0.24 270 / 0.25)",
+              }}
+            >
+              <SiDiscord
+                size={24}
+                style={{ color: "oklch(0.70 0.24 270)", flexShrink: 0 }}
+              />
+              <p className="font-body text-sm text-muted-foreground flex-1">
+                For faster communication and updates, please join our Discord
+                community:
+              </p>
+              <a
+                href="https://bit.ly/OfficialCapitalPartners"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-ocid="request.discord.link"
+                className="px-4 py-2 rounded-lg font-heading font-semibold text-xs whitespace-nowrap transition-opacity hover:opacity-80"
+                style={{
+                  background: "oklch(0.60 0.24 270 / 0.2)",
+                  border: "1px solid oklch(0.60 0.24 270 / 0.4)",
+                  color: "oklch(0.70 0.24 270)",
+                }}
+              >
+                Join Discord
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Our Story Section ───────────────────────────────────────── */
+function OurStorySection() {
+  const values = [
+    {
+      icon: <Star size={16} />,
+      name: "Integrity",
+      desc: "We operate with full transparency and honesty.",
+    },
+    {
+      icon: <TrendingUp size={16} />,
+      name: "Excellence",
+      desc: "We deliver professional results, every time.",
+    },
+    {
+      icon: <Rocket size={16} />,
+      name: "Growth",
+      desc: "We measure our success by your growth.",
+    },
+    {
+      icon: <Users size={16} />,
+      name: "Community",
+      desc: "We build lasting relationships with every client.",
+    },
+  ];
+
+  const stats = [
+    { value: "3+", label: "Plans Available" },
+    { value: "7+", label: "Custom Services" },
+    { value: "24h", label: "Response Time" },
+    { value: "100%", label: "Commitment" },
+  ];
+
+  return (
+    <section
+      id="our-story"
+      data-ocid="our-story.section"
+      className="relative py-28 overflow-hidden"
+    >
+      <div
+        className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none"
+        style={{
+          background: "oklch(0.54 0.24 293)",
+          filter: "blur(100px)",
+          opacity: 0.06,
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16 reveal">
+          <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-4 block">
+            Who We Are
           </span>
-        </p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Our <span className="gradient-text">Story</span>
+          </h2>
+          <div className="section-line mx-auto mb-4" />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="reveal flex flex-col gap-8">
+            <div>
+              <h3 className="font-display text-2xl font-bold text-foreground mb-4">
+                How Capital Partners Began
+              </h3>
+              <div className="flex flex-col gap-4">
+                <p className="font-body text-muted-foreground leading-relaxed">
+                  Capital Partners was founded with a single mission: to empower
+                  creators and businesses with the digital tools, strategies,
+                  and support they need to thrive in an increasingly competitive
+                  online world.
+                </p>
+                <p className="font-body text-muted-foreground leading-relaxed">
+                  What started as a small consulting initiative has grown into a
+                  full-service digital agency serving clients across content
+                  creation, brand development, and business growth. We believe
+                  every brand has the potential to dominate its space — and
+                  we&apos;re here to make that happen.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <p className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-5">
+                Our Values
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {values.map((v) => (
+                  <div
+                    key={v.name}
+                    className="flex items-start gap-3 p-4 rounded-xl border"
+                    style={{
+                      background: "oklch(0.09 0.02 285 / 0.85)",
+                      borderColor: "oklch(0.22 0.04 285 / 0.5)",
+                    }}
+                  >
+                    <div
+                      className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{
+                        background: "oklch(0.54 0.24 293 / 0.15)",
+                        color: "oklch(0.72 0.22 293)",
+                      }}
+                    >
+                      {v.icon}
+                    </div>
+                    <div>
+                      <p className="font-heading font-bold text-sm text-foreground">
+                        {v.name}
+                      </p>
+                      <p className="font-body text-xs text-muted-foreground mt-0.5">
+                        {v.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="reveal" style={{ transitionDelay: "120ms" }}>
+            <div className="grid grid-cols-2 gap-5">
+              {stats.map((stat, i) => (
+                <div
+                  key={stat.label}
+                  data-ocid={`our-story.stat.${i + 1}`}
+                  className="flex flex-col items-center justify-center py-10 rounded-2xl border text-center"
+                  style={{
+                    background:
+                      i === 1
+                        ? "linear-gradient(160deg, oklch(0.13 0.06 285 / 0.95), oklch(0.09 0.04 280 / 0.95))"
+                        : "oklch(0.09 0.02 285 / 0.85)",
+                    borderColor:
+                      i === 1
+                        ? "oklch(0.65 0.22 300 / 0.5)"
+                        : "oklch(0.22 0.04 285 / 0.5)",
+                    boxShadow:
+                      i === 1 ? "0 0 40px oklch(0.65 0.22 300 / 0.15)" : "none",
+                  }}
+                >
+                  <span
+                    className="font-display text-4xl font-bold"
+                    style={{ color: "oklch(0.72 0.22 293)" }}
+                  >
+                    {stat.value}
+                  </span>
+                  <span className="font-heading text-xs text-muted-foreground mt-2 tracking-wide">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div
+              className="mt-5 p-6 rounded-2xl border"
+              style={{
+                background: "oklch(0.09 0.03 285 / 0.9)",
+                borderColor: "oklch(0.54 0.24 293 / 0.25)",
+                boxShadow: "0 0 40px oklch(0.54 0.24 293 / 0.08)",
+              }}
+            >
+              <p className="font-display text-lg font-bold text-foreground mb-2">
+                Your Capital, Our Strategy
+              </p>
+              <p className="font-body text-sm text-muted-foreground">
+                Every service we offer is designed to move your brand forward.
+                From content creation to full business consulting, Capital
+                Partners is your long-term growth partner.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -1408,34 +1977,101 @@ const TEAM_MEMBERS: TeamMember[] = [
       "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
   },
   {
-    name: "Ankit Sharam",
-    initials: "AS",
-    role: "Freelance Founder",
-    title: "Head of Freelancing",
-    description:
-      "Ankit built our freelancing division from the ground up, curating a network of elite talent across disciplines and industries worldwide.",
-    available: true,
-    gradient:
-      "linear-gradient(135deg, oklch(0.40 0.18 260), oklch(0.55 0.22 280))",
-  },
-  {
-    name: "JB",
-    initials: "JB",
-    role: "Management Founder",
-    title: "Head of Management",
-    description:
-      "JB architects the management frameworks that keep our clients' operations running at peak performance — methodical, precise, and results-driven.",
-    available: true,
-    gradient:
-      "linear-gradient(135deg, oklch(0.35 0.16 290), oklch(0.50 0.20 300))",
-  },
-  {
-    name: "Position Open",
+    name: "Pending",
     initials: "?",
-    role: "Promotions Founder",
-    title: "Head of Promotions",
-    description:
-      "We're searching for an exceptional promotions visionary to lead our marketing division. Could this be you?",
+    role: "Co-Founder",
+    title: "Pending",
+    description: "This position is coming soon. Stay tuned for updates.",
+    available: false,
+    gradient:
+      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+  },
+  {
+    name: "Pending",
+    initials: "?",
+    role: "Head of Freelancing",
+    title: "Pending",
+    description: "This position is coming soon. Stay tuned for updates.",
+    available: false,
+    gradient:
+      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+  },
+  {
+    name: "Pending",
+    initials: "?",
+    role: "Head of Management",
+    title: "Pending",
+    description: "This position is coming soon. Stay tuned for updates.",
+    available: false,
+    gradient:
+      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+  },
+  {
+    name: "Pending",
+    initials: "?",
+    role: "Head of Promotions",
+    title: "Pending",
+    description: "This position is coming soon. Stay tuned for updates.",
+    available: false,
+    gradient:
+      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+  },
+  {
+    name: "Pending",
+    initials: "?",
+    role: "Head of Marketing",
+    title: "Pending",
+    description: "This position is coming soon. Stay tuned for updates.",
+    available: false,
+    gradient:
+      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+  },
+  {
+    name: "Pending",
+    initials: "?",
+    role: "Head of Content",
+    title: "Pending",
+    description: "This position is coming soon. Stay tuned for updates.",
+    available: false,
+    gradient:
+      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+  },
+  {
+    name: "Pending",
+    initials: "?",
+    role: "Head of Design",
+    title: "Pending",
+    description: "This position is coming soon. Stay tuned for updates.",
+    available: false,
+    gradient:
+      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+  },
+  {
+    name: "Pending",
+    initials: "?",
+    role: "Head of Development",
+    title: "Pending",
+    description: "This position is coming soon. Stay tuned for updates.",
+    available: false,
+    gradient:
+      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+  },
+  {
+    name: "Pending",
+    initials: "?",
+    role: "Head of Strategy",
+    title: "Pending",
+    description: "This position is coming soon. Stay tuned for updates.",
+    available: false,
+    gradient:
+      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+  },
+  {
+    name: "Pending",
+    initials: "?",
+    role: "Head of Partnerships",
+    title: "Pending",
+    description: "This position is coming soon. Stay tuned for updates.",
     available: false,
     gradient:
       "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
@@ -2074,8 +2710,9 @@ export default function App() {
         <HeroSection />
         <AboutSection />
         <ServicesSection />
-        <PackagesSection />
+        <PricingSection />
         <PortfolioSection />
+        <OurStorySection />
         <TeamSection />
         <ContactSection />
       </main>
