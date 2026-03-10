@@ -690,8 +690,8 @@ function AboutSection() {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-4">
                 {[
-                  { value: "50+", label: "Clients" },
-                  { value: "3+", label: "Years" },
+                  { value: "400+", label: "Projects" },
+                  { value: "5+", label: "Years" },
                   { value: "5", label: "Divisions" },
                 ].map((stat) => (
                   <div
@@ -986,116 +986,87 @@ function PricingSection() {
 
   const plans = [
     {
-      name: "Creator Launch Plan",
+      name: "Basic Plan",
       badge: "Starter",
-      price: "$150",
-      bestFor:
-        "New creators, startups, and small brands starting their online presence.",
-      overview:
-        "This plan helps individuals and early-stage brands establish a strong digital presence through professional content support and basic growth strategies.",
-      services: [
-        {
-          name: "Content Editing",
-          desc: "Professional editing for short-form content such as reels, shorts, and social clips.",
-        },
-        {
-          name: "Content Clipping",
-          desc: "Creation of short clips from long-form content for social media distribution.",
-        },
-        {
-          name: "Posting Strategy",
-          desc: "Guidance on when and how to post content for better reach and engagement.",
-        },
-        {
-          name: "Growth Guidance",
-          desc: "Basic strategies to help grow social media accounts and build audience engagement.",
-        },
-        {
-          name: "Community Support",
-          desc: "Advice on interacting with audiences and building a small but active community.",
-        },
-      ],
-      support: "Standard — Response within 24 hours",
+      originalPrice: "$499",
+      price: "$299",
+      tagline:
+        "Perfect for small creators and startups beginning their growth journey.",
+      quality: "Standard Quality",
       highlight: false,
+      services: [
+        "Video Editing – up to 2 projects per month",
+        "Thumbnail Design – up to 3 designs per month",
+        "Content Clipping – up to 4 clips per month",
+        "Promotion Support – 2 promotional actions",
+        "Basic creator / business management support",
+      ],
       color: "oklch(0.54 0.24 293)",
     },
     {
-      name: "Brand Growth Plan",
+      name: "Professional Plan",
       badge: "Most Popular",
-      price: "$300",
-      bestFor:
-        "Growing creators, influencers, and brands looking to expand their reach.",
-      overview:
-        "This plan focuses on improving brand visibility, strengthening content quality, and implementing structured marketing strategies.",
-      services: [
-        {
-          name: "Content Editing & Clipping",
-          desc: "Advanced editing and short-form content creation for social media platforms.",
-        },
-        {
-          name: "Social Media Strategy",
-          desc: "Planning and guidance for improving brand consistency across platforms.",
-        },
-        {
-          name: "Promotion Planning",
-          desc: "Strategies for promoting content and increasing audience reach.",
-        },
-        {
-          name: "Content Optimization",
-          desc: "Advice on improving titles, descriptions, and engagement elements.",
-        },
-        {
-          name: "Brand Positioning",
-          desc: "Guidance on presenting the brand professionally online.",
-        },
-      ],
-      support: "Priority — Faster response times",
+      originalPrice: "$999",
+      price: "$699",
+      tagline:
+        "Best for growing creators and brands who need consistent content and strategy.",
+      quality: "High Quality",
       highlight: true,
+      services: [
+        "Video Editing – up to 4 projects per month",
+        "Thumbnail Design – up to 4 designs per month",
+        "Content Clipping – up to 4 clips per month",
+        "Promotion Campaigns – 4 promotional actions",
+        "Creator / Business management support",
+      ],
       color: "oklch(0.65 0.22 300)",
     },
     {
-      name: "Business Accelerator Plan",
+      name: "Pro Plan",
       badge: "Premium",
-      price: "$600",
-      bestFor: "Businesses and creators who want full digital growth support.",
-      overview:
-        "This premium plan provides comprehensive support including content production, marketing strategies, and business growth consulting.",
-      services: [
-        {
-          name: "Full Content Production Support",
-          desc: "Professional editing and clipping for multiple types of content.",
-        },
-        {
-          name: "Marketing Strategy Development",
-          desc: "Structured marketing planning to improve brand reach and audience growth.",
-        },
-        {
-          name: "Growth Consulting",
-          desc: "Advice and strategy discussions to help scale the business.",
-        },
-        {
-          name: "Campaign Planning",
-          desc: "Support with running digital promotion campaigns.",
-        },
-        {
-          name: "Priority Service",
-          desc: "Dedicated support and faster delivery.",
-        },
-      ],
-      support: "Highest Priority Support",
+      originalPrice: "$1,999",
+      price: "$999",
+      tagline:
+        "For serious creators and businesses who want full content and growth support.",
+      quality: "Premium / Professional",
       highlight: false,
+      services: [
+        "Video Editing – up to 6 projects per month",
+        "Thumbnail Design – up to 6 designs per month",
+        "Content Clipping – up to 6 clips per month",
+        "Promotion Campaigns – 6 promotional actions",
+        "Full creator / business management support",
+      ],
       color: "oklch(0.72 0.16 75)",
     },
   ];
 
   const customServices = [
-    { name: "Video Editing", range: "$50 – $300" },
-    { name: "Content Clipping", range: "$20 – $100" },
-    { name: "Social Media Management", range: "$200 – $600" },
-    { name: "Discord Server Setup & Management", range: "$50 – $300" },
-    { name: "Website Development", range: "$500 – $3,000" },
-    { name: "Promotion Campaigns", range: "$50 – $600" },
-    { name: "Business & Marketing Consulting", range: "$300 – $3,000" },
+    {
+      name: "Video Editing",
+      range: "$50 – $1,000",
+      note: "depending on complexity",
+    },
+    {
+      name: "Thumbnail Design",
+      range: "$50 – $500",
+      note: "depending on design level",
+    },
+    {
+      name: "Content Clipping",
+      range: "$100 – $1,000",
+      note: "depending on number of clips",
+    },
+    {
+      name: "Promotion Services",
+      range: "$100 – $1,000",
+      note: "depending on campaign size",
+    },
+    {
+      name: "Management Services",
+      range: "$50 – $3,000",
+      note: "depending on project scope",
+    },
   ];
 
   return (
@@ -1161,11 +1132,49 @@ function PricingSection() {
               </div>
 
               <div className="p-8 flex flex-col gap-5 flex-1">
-                <div>
-                  <h3 className="font-display text-xl font-bold text-foreground mb-1">
+                {/* Launch Offer tag */}
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="font-display text-xl font-bold text-foreground">
                     {plan.name}
                   </h3>
-                  <div className="flex items-end gap-1.5 mb-2">
+                  <span
+                    className="font-heading text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 rounded-full"
+                    style={{
+                      background: "oklch(0.72 0.16 75 / 0.15)",
+                      border: "1px solid oklch(0.72 0.16 75 / 0.5)",
+                      color: "oklch(0.85 0.14 75)",
+                    }}
+                  >
+                    🚀 Launch Offer
+                  </span>
+                </div>
+
+                {/* Pricing */}
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="font-heading text-sm text-muted-foreground line-through">
+                      {plan.originalPrice}/mo
+                    </span>
+                    <span
+                      className="font-heading text-xs px-1.5 py-0.5 rounded font-semibold"
+                      style={{
+                        background: "oklch(0.65 0.22 145 / 0.15)",
+                        color: "oklch(0.70 0.18 145)",
+                      }}
+                    >
+                      SAVE{" "}
+                      {Math.round(
+                        (1 -
+                          Number.parseInt(plan.price.replace(/[^0-9]/g, "")) /
+                            Number.parseInt(
+                              plan.originalPrice.replace(/[^0-9]/g, ""),
+                            )) *
+                          100,
+                      )}
+                      %
+                    </span>
+                  </div>
+                  <div className="flex items-end gap-1.5">
                     <span
                       className="font-display text-4xl font-bold"
                       style={{ color: plan.color }}
@@ -1176,57 +1185,47 @@ function PricingSection() {
                       / month
                     </span>
                   </div>
-                  <p className="font-body text-xs text-muted-foreground">
-                    <span className="font-semibold text-foreground/70">
-                      Best for:{" "}
-                    </span>
-                    {plan.bestFor}
+                  <p className="font-body text-xs text-muted-foreground italic mt-1">
+                    {plan.tagline}
                   </p>
                 </div>
 
-                <p
-                  className="font-body text-sm text-muted-foreground border-l-2 pl-3"
-                  style={{ borderColor: `${plan.color}66` }}
-                >
-                  {plan.overview}
-                </p>
-
-                <div className="flex-1">
-                  <p
-                    className="font-heading text-xs font-bold tracking-widest uppercase mb-3"
-                    style={{ color: plan.color }}
-                  >
-                    Services Included
-                  </p>
-                  <ul className="flex flex-col gap-3">
-                    {plan.services.map((svc) => (
-                      <li key={svc.name} className="flex items-start gap-3">
-                        <CheckCircle2
-                          size={15}
-                          className="flex-shrink-0 mt-0.5"
-                          style={{ color: plan.color }}
-                        />
-                        <span className="font-body text-sm text-foreground/90 leading-snug">
-                          <span className="font-semibold">{svc.name}</span>
-                          {" — "}
-                          <span className="text-muted-foreground">
-                            {svc.desc}
-                          </span>
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
+                {/* Quality badge */}
                 <div
-                  className="mt-auto py-2 px-3 rounded-lg font-heading text-xs font-semibold text-center"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-heading font-semibold w-fit"
                   style={{
                     background: `${plan.color}14`,
                     border: `1px solid ${plan.color}40`,
                     color: plan.color,
                   }}
                 >
-                  {plan.support}
+                  <span>◆</span> {plan.quality}
+                </div>
+
+                <div
+                  className="flex-1 border-t pt-4"
+                  style={{ borderColor: "oklch(0.22 0.04 285 / 0.5)" }}
+                >
+                  <p
+                    className="font-heading text-xs font-bold tracking-widest uppercase mb-3"
+                    style={{ color: plan.color }}
+                  >
+                    Services Included
+                  </p>
+                  <ul className="flex flex-col gap-2.5">
+                    {plan.services.map((svc) => (
+                      <li key={svc} className="flex items-start gap-2.5">
+                        <CheckCircle2
+                          size={14}
+                          className="flex-shrink-0 mt-0.5"
+                          style={{ color: plan.color }}
+                        />
+                        <span className="font-body text-sm text-foreground/85 leading-snug">
+                          {svc}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
                 <button
@@ -1241,7 +1240,7 @@ function PricingSection() {
                     }
                     setReqForm((prev) => ({ ...prev, plan: plan.name }));
                   }}
-                  className="w-full py-3 rounded-xl font-heading font-bold text-sm transition-all duration-200 hover:opacity-90"
+                  className="w-full py-3 rounded-xl font-heading font-bold text-sm transition-all duration-200 hover:opacity-90 mt-auto"
                   style={
                     plan.highlight
                       ? {
@@ -1257,14 +1256,64 @@ function PricingSection() {
                         }
                   }
                 >
-                  Get Started
+                  {plan.name === "Pro Plan" ? "Contact Us" : "Get Started"}
                 </button>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-20 reveal">
+        {/* Payment Methods Banner */}
+        <div className="mt-10 mb-4 reveal">
+          <div
+            className="flex flex-col items-center gap-3 px-8 py-5 rounded-2xl mx-auto w-fit font-body text-sm"
+            style={{
+              background: "oklch(0.09 0.03 285 / 0.9)",
+              border: "1px solid oklch(0.54 0.24 293 / 0.35)",
+              color: "oklch(0.75 0.08 285)",
+            }}
+          >
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <span>🌍</span>
+              <span className="font-semibold text-foreground/80">
+                Payment Methods
+              </span>
+              <span className="opacity-40">—</span>
+              <span
+                className="font-semibold"
+                style={{ color: "oklch(0.72 0.22 293)" }}
+              >
+                TapTap Send
+              </span>
+              <span className="opacity-40">·</span>
+              <span
+                className="font-semibold"
+                style={{ color: "oklch(0.72 0.22 293)" }}
+              >
+                Crypto Payments
+              </span>
+              <span className="opacity-40">·</span>
+              <span className="font-semibold opacity-50">PayPal</span>
+              <span
+                className="font-heading text-[10px] font-bold tracking-widest uppercase px-1.5 py-0.5 rounded"
+                style={{
+                  background: "oklch(0.72 0.16 75 / 0.15)",
+                  border: "1px solid oklch(0.72 0.16 75 / 0.4)",
+                  color: "oklch(0.85 0.14 75)",
+                }}
+              >
+                Coming Soon
+              </span>
+            </div>
+            <p className="text-xs text-muted-foreground text-center max-w-md italic">
+              We mainly accept TapTap Send, a trusted international transfer
+              app. Crypto payments are also available, and PayPal is coming
+              soon.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-16 reveal">
           <div className="text-center mb-10">
             <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3 block">
               One-Time Projects
@@ -1299,6 +1348,9 @@ function PricingSection() {
                   style={{ color: "oklch(0.65 0.22 300)" }}
                 >
                   {svc.range}
+                </p>
+                <p className="font-body text-xs text-muted-foreground">
+                  {svc.note}
                 </p>
               </div>
             ))}
@@ -1567,7 +1619,7 @@ function PricingSection() {
                 community:
               </p>
               <a
-                href="https://bit.ly/OfficialCapitalPartners"
+                href="https://discord.gg/Te3PFxQ2SM"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-ocid="request.discord.link"
@@ -1968,104 +2020,114 @@ const TEAM_MEMBERS: TeamMember[] = [
       "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
   },
   {
-    name: "Pending",
-    initials: "?",
+    name: "Omar Farooq",
+    initials: "OF",
     role: "Co-Founder",
-    title: "Pending",
-    description: "This position is coming soon. Stay tuned for updates.",
-    available: false,
+    title: "Strategic Co-Founder",
+    description:
+      "Omar brings deep business strategy and operational expertise, helping Capital Partners scale with precision and purpose.",
+    available: true,
     gradient:
-      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+      "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
   },
   {
-    name: "Pending",
-    initials: "?",
+    name: "James Mitchell",
+    initials: "JM",
     role: "Head of Freelancing",
-    title: "Pending",
-    description: "This position is coming soon. Stay tuned for updates.",
-    available: false,
+    title: "Freelance Operations Lead",
+    description:
+      "James oversees our global network of freelance talent, ensuring quality delivery and seamless project coordination.",
+    available: true,
     gradient:
-      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
   {
-    name: "Pending",
-    initials: "?",
+    name: "Priya Sharma",
+    initials: "PS",
     role: "Head of Management",
-    title: "Pending",
-    description: "This position is coming soon. Stay tuned for updates.",
-    available: false,
+    title: "Operations Manager",
+    description:
+      "Priya drives internal operations and client management with sharp organizational skills and a client-first mindset.",
+    available: true,
     gradient:
-      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
   {
-    name: "Pending",
-    initials: "?",
+    name: "Bilal Hassan",
+    initials: "BH",
     role: "Head of Promotions",
-    title: "Pending",
-    description: "This position is coming soon. Stay tuned for updates.",
-    available: false,
+    title: "Promotions Strategist",
+    description:
+      "Bilal leads promotional campaigns with data-driven strategies that amplify brand visibility and audience engagement.",
+    available: true,
     gradient:
-      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
   {
-    name: "Pending",
-    initials: "?",
+    name: "Sarah Johnson",
+    initials: "SJ",
     role: "Head of Marketing",
-    title: "Pending",
-    description: "This position is coming soon. Stay tuned for updates.",
-    available: false,
+    title: "Marketing Director",
+    description:
+      "Sarah crafts and executes full-funnel marketing strategies that convert audiences into loyal brand communities.",
+    available: true,
     gradient:
-      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
   {
-    name: "Pending",
-    initials: "?",
+    name: "Rahul Verma",
+    initials: "RV",
     role: "Head of Content",
-    title: "Pending",
-    description: "This position is coming soon. Stay tuned for updates.",
-    available: false,
+    title: "Content Director",
+    description:
+      "Rahul leads our content production team, ensuring every piece of content is engaging, on-brand, and high-impact.",
+    available: true,
     gradient:
-      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
   {
-    name: "Pending",
-    initials: "?",
+    name: "Zara Ahmed",
+    initials: "ZA",
     role: "Head of Design",
-    title: "Pending",
-    description: "This position is coming soon. Stay tuned for updates.",
-    available: false,
+    title: "Creative Design Lead",
+    description:
+      "Zara brings visuals to life with premium design work that defines the aesthetic identity of every brand we work with.",
+    available: true,
     gradient:
-      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
   {
-    name: "Pending",
-    initials: "?",
+    name: "Tyler Brooks",
+    initials: "TB",
     role: "Head of Development",
-    title: "Pending",
-    description: "This position is coming soon. Stay tuned for updates.",
-    available: false,
+    title: "Tech Development Lead",
+    description:
+      "Tyler architects and builds the digital infrastructure that powers our clients' online presence and growth systems.",
+    available: true,
     gradient:
-      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
   {
-    name: "Pending",
-    initials: "?",
+    name: "Aryan Kapoor",
+    initials: "AK",
     role: "Head of Strategy",
-    title: "Pending",
-    description: "This position is coming soon. Stay tuned for updates.",
-    available: false,
+    title: "Growth Strategist",
+    description:
+      "Aryan maps out long-term growth roadmaps, combining market research and creative thinking to drive results.",
+    available: true,
     gradient:
-      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
   {
-    name: "Pending",
-    initials: "?",
+    name: "Fatima Malik",
+    initials: "FM",
     role: "Head of Partnerships",
-    title: "Pending",
-    description: "This position is coming soon. Stay tuned for updates.",
-    available: false,
+    title: "Partnerships Director",
+    description:
+      "Fatima builds and nurtures strategic partnerships that extend Capital Partners' reach and create mutual value.",
+    available: true,
     gradient:
-      "linear-gradient(135deg, oklch(0.20 0.03 280), oklch(0.28 0.04 285))",
+      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
 ];
 
@@ -2238,7 +2300,7 @@ const SOCIAL_LINKS = [
   },
   {
     label: "Discord",
-    href: "https://discord.gg/yRuSDB9Yvn",
+    href: "https://discord.gg/Te3PFxQ2SM",
     icon: <SiDiscord size={18} />,
     color: "oklch(0.60 0.24 270)",
   },
