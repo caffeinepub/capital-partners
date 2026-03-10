@@ -1044,17 +1044,17 @@ function PricingSection() {
   const customServices = [
     {
       name: "Video Editing",
-      range: "$50 – $1,000",
+      range: "$199 – $799",
       note: "depending on complexity",
     },
     {
       name: "Thumbnail Design",
-      range: "$50 – $500",
+      range: "$100 – $599",
       note: "depending on design level",
     },
     {
       name: "Content Clipping",
-      range: "$100 – $1,000",
+      range: "$50 – $399",
       note: "depending on number of clips",
     },
     {
@@ -1064,7 +1064,7 @@ function PricingSection() {
     },
     {
       name: "Management Services",
-      range: "$50 – $3,000",
+      range: "$299 – $1,999",
       note: "depending on project scope",
     },
   ];
@@ -1263,8 +1263,52 @@ function PricingSection() {
           ))}
         </div>
 
+        <div className="mt-16 reveal">
+          <div className="text-center mb-10">
+            <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3 block">
+              One-Time Projects
+            </span>
+            <h3 className="font-display text-3xl font-bold text-foreground mb-2">
+              Custom Services
+            </h3>
+            <div className="section-line mx-auto mb-4" />
+            <p className="font-body text-muted-foreground max-w-2xl mx-auto">
+              Clients who require specific services can request individual
+              projects. Pricing depends on the project scope and requirements.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {customServices.map((svc, i) => (
+              <div
+                key={svc.name}
+                data-ocid={`custom.service.item.${i + 1}`}
+                className="reveal flex flex-col gap-2 p-5 rounded-xl border"
+                style={{
+                  background: "oklch(0.09 0.02 285 / 0.85)",
+                  borderColor: "oklch(0.22 0.04 285 / 0.5)",
+                  transitionDelay: `${i * 50}ms`,
+                }}
+              >
+                <p className="font-heading font-semibold text-sm text-foreground/90">
+                  {svc.name}
+                </p>
+                <p
+                  className="font-display text-lg font-bold"
+                  style={{ color: "oklch(0.65 0.22 300)" }}
+                >
+                  {svc.range}
+                </p>
+                <p className="font-body text-xs text-muted-foreground">
+                  {svc.note}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Payment Methods Banner */}
-        <div className="mt-10 mb-4 reveal">
+        <div className="mt-12 mb-4 reveal">
           <div
             className="flex flex-col items-center gap-3 px-8 py-5 rounded-2xl mx-auto w-fit font-body text-sm"
             style={{
@@ -1310,50 +1354,6 @@ function PricingSection() {
               app. Crypto payments are also available, and PayPal is coming
               soon.
             </p>
-          </div>
-        </div>
-
-        <div className="mt-16 reveal">
-          <div className="text-center mb-10">
-            <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3 block">
-              One-Time Projects
-            </span>
-            <h3 className="font-display text-3xl font-bold text-foreground mb-2">
-              Custom Services
-            </h3>
-            <div className="section-line mx-auto mb-4" />
-            <p className="font-body text-muted-foreground max-w-2xl mx-auto">
-              Clients who require specific services can request individual
-              projects. Pricing depends on the project scope and requirements.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {customServices.map((svc, i) => (
-              <div
-                key={svc.name}
-                data-ocid={`custom.service.item.${i + 1}`}
-                className="reveal flex flex-col gap-2 p-5 rounded-xl border"
-                style={{
-                  background: "oklch(0.09 0.02 285 / 0.85)",
-                  borderColor: "oklch(0.22 0.04 285 / 0.5)",
-                  transitionDelay: `${i * 50}ms`,
-                }}
-              >
-                <p className="font-heading font-semibold text-sm text-foreground/90">
-                  {svc.name}
-                </p>
-                <p
-                  className="font-display text-lg font-bold"
-                  style={{ color: "oklch(0.65 0.22 300)" }}
-                >
-                  {svc.range}
-                </p>
-                <p className="font-body text-xs text-muted-foreground">
-                  {svc.note}
-                </p>
-              </div>
-            ))}
           </div>
         </div>
 
