@@ -1044,27 +1044,27 @@ function PricingSection() {
   const customServices = [
     {
       name: "Video Editing",
-      range: "$199 – $799",
+      range: "$149 – $799",
       note: "depending on complexity",
     },
     {
       name: "Thumbnail Design",
-      range: "$100 – $599",
+      range: "$99 – $599",
       note: "depending on design level",
     },
     {
       name: "Content Clipping",
-      range: "$50 – $399",
+      range: "$59 – $399",
       note: "depending on number of clips",
     },
     {
       name: "Promotion Services",
-      range: "$100 – $1,000",
+      range: "$99 – $799",
       note: "depending on campaign size",
     },
     {
       name: "Management Services",
-      range: "$299 – $1,999",
+      range: "$199 – $999",
       note: "depending on project scope",
     },
   ];
@@ -1096,6 +1096,16 @@ function PricingSection() {
             Choose the plan that fits your goals. All plans are billed monthly
             with no hidden fees.
           </p>
+          <div
+            className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 rounded-full font-heading text-sm font-bold tracking-wide"
+            style={{
+              background: "oklch(0.72 0.16 75 / 0.12)",
+              border: "1px solid oklch(0.72 0.16 75 / 0.45)",
+              color: "oklch(0.88 0.14 75)",
+            }}
+          >
+            🚀 Grab it now — Launch prices available for a limited time only!
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
@@ -1132,22 +1142,9 @@ function PricingSection() {
               </div>
 
               <div className="p-8 flex flex-col gap-5 flex-1">
-                {/* Launch Offer tag */}
-                <div className="flex items-center justify-between gap-2">
-                  <h3 className="font-display text-xl font-bold text-foreground">
-                    {plan.name}
-                  </h3>
-                  <span
-                    className="font-heading text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 rounded-full"
-                    style={{
-                      background: "oklch(0.72 0.16 75 / 0.15)",
-                      border: "1px solid oklch(0.72 0.16 75 / 0.5)",
-                      color: "oklch(0.85 0.14 75)",
-                    }}
-                  >
-                    🚀 Launch Offer
-                  </span>
-                </div>
+                <h3 className="font-display text-xl font-bold text-foreground">
+                  {plan.name}
+                </h3>
 
                 {/* Pricing */}
                 <div>
