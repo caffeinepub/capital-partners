@@ -651,16 +651,26 @@ function AboutSection() {
               {/* CEO Avatar */}
               <div className="relative flex flex-col items-center text-center mb-8">
                 <div
-                  className="w-28 h-28 rounded-full flex items-center justify-center text-3xl font-display font-bold text-foreground mb-4 border-2"
+                  className="w-28 h-28 rounded-full overflow-hidden mb-4 border-2 relative"
                   style={{
-                    background:
-                      "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
                     borderColor: "oklch(0.72 0.22 295 / 0.5)",
-                    boxShadow:
-                      "0 0 30px oklch(0.54 0.24 293 / 0.4), inset 0 1px 0 oklch(0.97 0 0 / 0.1)",
+                    boxShadow: "0 0 30px oklch(0.54 0.24 293 / 0.4)",
                   }}
                 >
-                  AA
+                  <img
+                    src="/assets/generated/ceo-portrait.dim_400x400.jpg"
+                    alt="Abdul Ahad"
+                    className="w-full h-full object-cover object-top"
+                  />
+                  {/* Face blur overlay */}
+                  <div
+                    className="absolute inset-x-0 top-0"
+                    style={{
+                      height: "70%",
+                      backdropFilter: "blur(12px)",
+                      WebkitBackdropFilter: "blur(12px)",
+                    }}
+                  />
                 </div>
                 <Badge
                   className="mb-2 font-heading font-semibold tracking-wide text-xs"
@@ -1096,16 +1106,6 @@ function PricingSection() {
             Choose the plan that fits your goals. All plans are billed monthly
             with no hidden fees.
           </p>
-          <div
-            className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 rounded-full font-heading text-sm font-bold tracking-wide"
-            style={{
-              background: "oklch(0.72 0.16 75 / 0.12)",
-              border: "1px solid oklch(0.72 0.16 75 / 0.45)",
-              color: "oklch(0.88 0.14 75)",
-            }}
-          >
-            🚀 Grab it now — Launch prices available for a limited time only!
-          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
@@ -1334,22 +1334,20 @@ function PricingSection() {
                 Crypto Payments
               </span>
               <span className="opacity-40">·</span>
-              <span className="font-semibold opacity-50">PayPal</span>
               <span
-                className="font-heading text-[10px] font-bold tracking-widest uppercase px-1.5 py-0.5 rounded"
+                className="font-semibold"
                 style={{
-                  background: "oklch(0.72 0.16 75 / 0.15)",
-                  border: "1px solid oklch(0.72 0.16 75 / 0.4)",
-                  color: "oklch(0.85 0.14 75)",
+                  color: "oklch(0.72 0.22 293)",
+                  filter: "blur(1.5px)",
+                  opacity: 0.5,
                 }}
               >
-                Coming Soon
+                PayPal (Coming Soon)
               </span>
             </div>
             <p className="text-xs text-muted-foreground text-center max-w-md italic">
               We mainly accept TapTap Send, a trusted international transfer
-              app. Crypto payments are also available, and PayPal is coming
-              soon.
+              app. Crypto payments are also available. PayPal coming soon.
             </p>
           </div>
         </div>
@@ -2002,127 +2000,91 @@ interface TeamMember {
   description: string;
   available: boolean;
   gradient?: string;
+  photo?: string;
 }
 
 const TEAM_MEMBERS: TeamMember[] = [
   {
-    name: "Abdul Ahad (Ahfah)",
+    name: "Abdul Ahad",
     initials: "AA",
-    role: "CEO & Founder",
-    title: "Visionary CEO",
+    role: "CEO",
+    title: "CEO & Founder",
     description:
-      "The driving force behind Capital Partners. Abdul Ahad combines strategic insight with entrepreneurial fire to lead the agency toward global impact.",
+      "The driving force behind Capital Partners, combining strategic insight with entrepreneurial fire to lead the agency toward global impact.",
     available: true,
+    photo: "/assets/generated/team-abdul-ahad.dim_400x400.jpg",
     gradient:
       "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
   },
   {
-    name: "Omar Farooq",
-    initials: "OF",
+    name: "Fahad",
+    initials: "F",
     role: "Co-Founder",
     title: "Strategic Co-Founder",
     description:
-      "Omar brings deep business strategy and operational expertise, helping Capital Partners scale with precision and purpose.",
+      "Brings deep business strategy and operational expertise, helping Capital Partners scale with precision and purpose.",
     available: true,
+    photo: "/assets/generated/team-fahad.dim_400x400.jpg",
     gradient:
       "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
   },
   {
-    name: "James Mitchell",
-    initials: "JM",
-    role: "Head of Freelancing",
-    title: "Freelance Operations Lead",
+    name: "Ali",
+    initials: "A",
+    role: "Editor",
+    title: "Lead Editor",
     description:
-      "James oversees our global network of freelance talent, ensuring quality delivery and seamless project coordination.",
+      "Crafts compelling video content that captivates audiences and elevates brand storytelling to the highest level.",
     available: true,
+    photo: "/assets/generated/team-ali.dim_400x400.jpg",
     gradient:
       "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
   {
-    name: "Priya Sharma",
-    initials: "PS",
-    role: "Head of Management",
-    title: "Operations Manager",
+    name: "Anikit",
+    initials: "AN",
+    role: "Designer",
+    title: "Creative Designer",
     description:
-      "Priya drives internal operations and client management with sharp organizational skills and a client-first mindset.",
+      "Brings visuals to life with premium design work that defines the aesthetic identity of every brand we work with.",
     available: true,
+    photo: "/assets/generated/team-anikit.dim_400x400.jpg",
     gradient:
       "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
   {
-    name: "Bilal Hassan",
-    initials: "BH",
+    name: "Anas",
+    initials: "AN",
     role: "Head of Promotions",
     title: "Promotions Strategist",
     description:
-      "Bilal leads promotional campaigns with data-driven strategies that amplify brand visibility and audience engagement.",
+      "Leads promotional campaigns with data-driven strategies that amplify brand visibility and audience engagement.",
     available: true,
+    photo: "/assets/generated/team-anas.dim_400x400.jpg",
     gradient:
       "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
   {
-    name: "Sarah Johnson",
-    initials: "SJ",
-    role: "Head of Marketing",
-    title: "Marketing Director",
+    name: "Spoke",
+    initials: "SP",
+    role: "Head of Clippers",
+    title: "Clipping Operations Lead",
     description:
-      "Sarah crafts and executes full-funnel marketing strategies that convert audiences into loyal brand communities.",
+      "Leads our content clipping team, delivering high-impact short-form clips that drive engagement across all platforms.",
     available: true,
+    photo: "/assets/generated/team-spoke.dim_400x400.jpg",
     gradient:
       "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
   {
-    name: "Rahul Verma",
-    initials: "RV",
-    role: "Head of Content",
-    title: "Content Director",
+    name: "Ahmad",
+    initials: "AH",
+    role: "Head of Management",
+    title: "Operations Manager",
     description:
-      "Rahul leads our content production team, ensuring every piece of content is engaging, on-brand, and high-impact.",
+      "Drives internal operations and client management with sharp organizational skills and a client-first mindset.",
     available: true,
-    gradient:
-      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
-  },
-  {
-    name: "Zara Ahmed",
-    initials: "ZA",
-    role: "Head of Design",
-    title: "Creative Design Lead",
-    description:
-      "Zara brings visuals to life with premium design work that defines the aesthetic identity of every brand we work with.",
-    available: true,
-    gradient:
-      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
-  },
-  {
-    name: "Tyler Brooks",
-    initials: "TB",
-    role: "Head of Development",
-    title: "Tech Development Lead",
-    description:
-      "Tyler architects and builds the digital infrastructure that powers our clients' online presence and growth systems.",
-    available: true,
-    gradient:
-      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
-  },
-  {
-    name: "Aryan Kapoor",
-    initials: "AK",
-    role: "Head of Strategy",
-    title: "Growth Strategist",
-    description:
-      "Aryan maps out long-term growth roadmaps, combining market research and creative thinking to drive results.",
-    available: true,
-    gradient:
-      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
-  },
-  {
-    name: "Fatima Malik",
-    initials: "FM",
-    role: "Head of Partnerships",
-    title: "Partnerships Director",
-    description:
-      "Fatima builds and nurtures strategic partnerships that extend Capital Partners' reach and create mutual value.",
-    available: true,
+    photo: "/assets/generated/team-ahmad.dim_400x400.jpg",
     gradient:
       "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
@@ -2144,25 +2106,52 @@ function TeamCard({ member, index }: { member: TeamMember; index: number }) {
     >
       {/* Avatar */}
       <div className="relative inline-block mb-5">
-        <div
-          className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-display font-bold text-foreground border-2 mx-auto"
-          style={{
-            background: member.gradient,
-            borderColor: member.available
-              ? "oklch(0.54 0.24 293 / 0.5)"
-              : "oklch(0.30 0.05 280 / 0.4)",
-            boxShadow: member.available
-              ? "0 0 25px oklch(0.54 0.24 293 / 0.3)"
-              : "none",
-            color: member.available ? "white" : "oklch(0.45 0 0)",
-          }}
-        >
-          {member.available ? (
-            member.initials
-          ) : (
-            <Lock size={24} className="text-muted-foreground" />
-          )}
-        </div>
+        {member.photo ? (
+          <div
+            className="w-20 h-20 rounded-full overflow-hidden mx-auto border-2"
+            style={{
+              borderColor: "oklch(0.54 0.24 293 / 0.5)",
+              boxShadow: "0 0 25px oklch(0.54 0.24 293 / 0.3)",
+            }}
+          >
+            <div className="relative w-full h-full">
+              <img
+                src={member.photo}
+                alt={member.name}
+                className="w-full h-full object-cover object-top"
+              />
+              {/* Face blur overlay - covers top portion where face is */}
+              <div
+                className="absolute inset-x-0 top-0"
+                style={{
+                  height: "70%",
+                  backdropFilter: "blur(10px)",
+                  WebkitBackdropFilter: "blur(10px)",
+                }}
+              />
+            </div>
+          </div>
+        ) : (
+          <div
+            className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-display font-bold text-foreground border-2 mx-auto"
+            style={{
+              background: member.gradient,
+              borderColor: member.available
+                ? "oklch(0.54 0.24 293 / 0.5)"
+                : "oklch(0.30 0.05 280 / 0.4)",
+              boxShadow: member.available
+                ? "0 0 25px oklch(0.54 0.24 293 / 0.3)"
+                : "none",
+              color: member.available ? "white" : "oklch(0.45 0 0)",
+            }}
+          >
+            {member.available ? (
+              member.initials
+            ) : (
+              <Lock size={24} className="text-muted-foreground" />
+            )}
+          </div>
+        )}
         {member.available && (
           <div
             className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-2 flex items-center justify-center"
