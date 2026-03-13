@@ -627,7 +627,7 @@ function AboutSection() {
             </div>
           </div>
 
-          {/* CEO Card */}
+          {/* Leadership Duo Card */}
           <div className="reveal-right">
             <div
               className="relative rounded-3xl p-8 overflow-hidden border"
@@ -648,44 +648,99 @@ function AboutSection() {
                 }}
               />
 
-              {/* CEO Avatar */}
-              <div className="relative flex flex-col items-center text-center mb-8">
-                <div
-                  className="w-28 h-28 rounded-full overflow-hidden mb-4 border-2 relative"
-                  style={{
-                    borderColor: "oklch(0.72 0.22 295 / 0.5)",
-                    boxShadow: "0 0 30px oklch(0.54 0.24 293 / 0.4)",
-                  }}
-                >
-                  <img
-                    src="/assets/generated/ceo-portrait.dim_400x400.jpg"
-                    alt="Abdul Ahad"
-                    className="w-full h-full object-cover object-center"
-                  />
+              {/* Dual Founders */}
+              <div className="grid grid-cols-2 gap-6 mb-6">
+                {/* CEO */}
+                <div className="flex flex-col items-center text-center">
+                  <div
+                    className="w-24 h-24 rounded-full overflow-hidden mb-3 border-2"
+                    style={{
+                      borderColor: "oklch(0.72 0.22 295 / 0.5)",
+                      boxShadow: "0 0 25px oklch(0.54 0.24 293 / 0.4)",
+                    }}
+                  >
+                    <img
+                      src="/assets/generated/team-abdul-ahad.dim_400x400.jpg"
+                      alt="Abdul Ahad"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </div>
+                  <Badge
+                    className="mb-2 font-heading font-semibold tracking-wide text-xs"
+                    style={{
+                      background: "oklch(0.54 0.24 293 / 0.2)",
+                      borderColor: "oklch(0.54 0.24 293 / 0.4)",
+                      color: "oklch(0.75 0.22 293)",
+                    }}
+                  >
+                    CEO & Founder
+                  </Badge>
+                  <h3 className="font-display text-lg font-bold text-foreground leading-tight">
+                    Abdul Ahad
+                  </h3>
+                  <p className="font-heading text-primary font-medium text-xs mt-0.5">
+                    (Ahfah)
+                  </p>
                 </div>
-                <Badge
-                  className="mb-2 font-heading font-semibold tracking-wide text-xs"
+
+                {/* Co-Founder */}
+                <div className="flex flex-col items-center text-center">
+                  <div
+                    className="w-24 h-24 rounded-full overflow-hidden mb-3 border-2"
+                    style={{
+                      borderColor: "oklch(0.82 0.18 75 / 0.5)",
+                      boxShadow: "0 0 25px oklch(0.82 0.18 75 / 0.3)",
+                    }}
+                  >
+                    <img
+                      src="/assets/uploads/9d10f337-a930-4379-83a4-2bc1a16ed30a-1.jpeg"
+                      alt="Fahad"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </div>
+                  <Badge
+                    className="mb-2 font-heading font-semibold tracking-wide text-xs"
+                    style={{
+                      background: "oklch(0.82 0.18 75 / 0.18)",
+                      borderColor: "oklch(0.82 0.18 75 / 0.4)",
+                      color: "oklch(0.82 0.18 75)",
+                    }}
+                  >
+                    Co-Founder
+                  </Badge>
+                  <h3 className="font-display text-lg font-bold text-foreground leading-tight">
+                    Fahad
+                  </h3>
+                  <p
+                    className="font-heading font-medium text-xs mt-0.5"
+                    style={{ color: "oklch(0.82 0.18 75)" }}
+                  >
+                    MENA CEO
+                  </p>
+                </div>
+              </div>
+
+              {/* Brothers Badge */}
+              <div className="flex justify-center mb-6">
+                <div
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-heading text-xs font-bold tracking-wide"
                   style={{
-                    background: "oklch(0.54 0.24 293 / 0.2)",
-                    borderColor: "oklch(0.54 0.24 293 / 0.4)",
-                    color: "oklch(0.75 0.22 293)",
+                    background: "oklch(0.82 0.18 75 / 0.12)",
+                    border: "1px solid oklch(0.82 0.18 75 / 0.45)",
+                    color: "oklch(0.82 0.18 75)",
                   }}
                 >
-                  CEO & Founder
-                </Badge>
-                <h3 className="font-display text-2xl font-bold text-foreground">
-                  Abdul Ahad
-                </h3>
-                <p className="font-heading text-primary font-medium text-sm mt-1">
-                  (Ahfah)
-                </p>
+                  <span>♛</span>
+                  Real Brothers &amp; Business Partners
+                  <span>♛</span>
+                </div>
               </div>
 
               <p className="font-body text-muted-foreground text-sm leading-relaxed text-center mb-6">
-                A visionary leader with a passion for transforming ambitious
-                ideas into thriving enterprises. Abdul Ahad founded Capital
-                Partners to democratize access to world-class business strategy,
-                management, and investment expertise.
+                A visionary duo and real brothers who built Capital Partners to
+                empower entrepreneurs worldwide. Together they combine elite
+                strategy, bold innovation, and an unbeatable family bond to
+                deliver results that transcend expectations.
               </p>
 
               {/* Stats */}
@@ -1087,16 +1142,143 @@ function PricingSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16 reveal">
           <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-4 block">
-            Monthly Plans
+            Services &amp; Pricing
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
             Services &amp; <span className="gradient-text">Pricing</span>
           </h2>
           <div className="section-line mx-auto mb-4" />
           <p className="font-body text-muted-foreground max-w-xl mx-auto">
-            Choose the plan that fits your goals. All plans are billed monthly
-            with no hidden fees.
+            Choose a monthly plan or order a single custom project. All plans
+            are billed monthly with no hidden fees.
           </p>
+        </div>
+
+        {/* Custom / One-Time Projects — ABOVE monthly plans */}
+        <div className="mb-20 reveal">
+          <div className="text-center mb-10">
+            <span
+              className="font-heading text-xs font-bold tracking-[0.3em] uppercase mb-3 block"
+              style={{ color: "oklch(0.82 0.18 75)" }}
+            >
+              One-Time Projects
+            </span>
+            <h3 className="font-display text-3xl font-bold text-foreground mb-2">
+              Custom /{" "}
+              <span style={{ color: "oklch(0.82 0.18 75)" }}>One-Time</span>{" "}
+              Projects
+            </h3>
+            <div className="section-line mx-auto mb-4" />
+            <p className="font-body text-muted-foreground max-w-2xl mx-auto">
+              Need a single project done? Choose any service individually — no
+              subscription required.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {customServices.map((svc, i) => {
+              const icons = ["🎬", "🖼️", "✂️", "📣", "⚙️"];
+              const colors = [
+                "oklch(0.65 0.22 300)",
+                "oklch(0.72 0.22 293)",
+                "oklch(0.60 0.20 275)",
+                "oklch(0.72 0.16 75)",
+                "oklch(0.66 0.20 150)",
+              ];
+              return (
+                <div
+                  key={svc.name}
+                  data-ocid={`custom.service.item.${i + 1}`}
+                  className="reveal relative flex flex-col gap-4 p-6 rounded-2xl border group transition-all duration-300 hover:-translate-y-1"
+                  style={{
+                    background:
+                      "linear-gradient(140deg, oklch(0.13 0.05 285 / 0.95), oklch(0.09 0.02 280 / 0.95))",
+                    borderColor: `${colors[i]}44`,
+                    boxShadow: `0 0 0 0 ${colors[i]}00`,
+                    transitionDelay: `${i * 60}ms`,
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.boxShadow =
+                      `0 0 30px ${colors[i]}22, 0 0 0 1px ${colors[i]}33`;
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.boxShadow =
+                      `0 0 0 0 ${colors[i]}00`;
+                  }}
+                >
+                  <div className="flex items-start justify-between">
+                    <div
+                      className="w-11 h-11 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
+                      style={{
+                        background: `${colors[i]}18`,
+                        border: `1px solid ${colors[i]}30`,
+                      }}
+                    >
+                      {icons[i]}
+                    </div>
+                    <div
+                      className="font-heading text-xs px-2 py-1 rounded-full font-semibold"
+                      style={{
+                        background: `${colors[i]}14`,
+                        color: colors[i],
+                        border: `1px solid ${colors[i]}30`,
+                      }}
+                    >
+                      Custom
+                    </div>
+                  </div>
+                  <div>
+                    <p className="font-heading font-bold text-base text-foreground mb-1">
+                      {svc.name}
+                    </p>
+                    <p
+                      className="font-display text-2xl font-bold"
+                      style={{ color: colors[i] }}
+                    >
+                      {svc.range}
+                    </p>
+                    <p className="font-body text-xs text-muted-foreground mt-1">
+                      {svc.note}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const el = document.querySelector("#request-form");
+                      if (el) {
+                        const top =
+                          el.getBoundingClientRect().top + window.scrollY - 100;
+                        window.scrollTo({ top, behavior: "smooth" });
+                      }
+                    }}
+                    className="mt-auto w-full py-2 rounded-xl font-heading font-semibold text-xs transition-all duration-200 hover:opacity-90"
+                    style={{
+                      background: `${colors[i]}14`,
+                      border: `1px solid ${colors[i]}40`,
+                      color: colors[i],
+                    }}
+                  >
+                    Request Custom →
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-4 mb-14 reveal">
+          <div
+            className="flex-1 h-px"
+            style={{ background: "oklch(0.54 0.24 293 / 0.2)" }}
+          />
+          <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary">
+            Monthly Plans
+          </span>
+          <div
+            className="flex-1 h-px"
+            style={{ background: "oklch(0.54 0.24 293 / 0.2)" }}
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
@@ -1249,50 +1431,6 @@ function PricingSection() {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-16 reveal">
-          <div className="text-center mb-10">
-            <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3 block">
-              One-Time Projects
-            </span>
-            <h3 className="font-display text-3xl font-bold text-foreground mb-2">
-              Custom Services
-            </h3>
-            <div className="section-line mx-auto mb-4" />
-            <p className="font-body text-muted-foreground max-w-2xl mx-auto">
-              Clients who require specific services can request individual
-              projects. Pricing depends on the project scope and requirements.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {customServices.map((svc, i) => (
-              <div
-                key={svc.name}
-                data-ocid={`custom.service.item.${i + 1}`}
-                className="reveal flex flex-col gap-2 p-5 rounded-xl border"
-                style={{
-                  background: "oklch(0.09 0.02 285 / 0.85)",
-                  borderColor: "oklch(0.22 0.04 285 / 0.5)",
-                  transitionDelay: `${i * 50}ms`,
-                }}
-              >
-                <p className="font-heading font-semibold text-sm text-foreground/90">
-                  {svc.name}
-                </p>
-                <p
-                  className="font-display text-lg font-bold"
-                  style={{ color: "oklch(0.65 0.22 300)" }}
-                >
-                  {svc.range}
-                </p>
-                <p className="font-body text-xs text-muted-foreground">
-                  {svc.note}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Payment Methods Banner */}
