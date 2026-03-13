@@ -660,16 +660,7 @@ function AboutSection() {
                   <img
                     src="/assets/generated/ceo-portrait.dim_400x400.jpg"
                     alt="Abdul Ahad"
-                    className="w-full h-full object-cover object-top"
-                  />
-                  {/* Face blur overlay */}
-                  <div
-                    className="absolute inset-x-0 top-0"
-                    style={{
-                      height: "70%",
-                      backdropFilter: "blur(12px)",
-                      WebkitBackdropFilter: "blur(12px)",
-                    }}
+                    className="w-full h-full object-cover object-center"
                   />
                 </div>
                 <Badge
@@ -1338,8 +1329,6 @@ function PricingSection() {
                 className="font-semibold"
                 style={{
                   color: "oklch(0.72 0.22 293)",
-                  filter: "blur(1.5px)",
-                  opacity: 0.5,
                 }}
               >
                 PayPal (Coming Soon)
@@ -2024,7 +2013,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     description:
       "Brings deep business strategy and operational expertise, helping Capital Partners scale with precision and purpose.",
     available: true,
-    photo: "/assets/generated/team-fahad.dim_400x400.jpg",
+    photo: "/assets/uploads/9d10f337-a930-4379-83a4-2bc1a16ed30a-1.jpeg",
     gradient:
       "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
   },
@@ -2118,16 +2107,7 @@ function TeamCard({ member, index }: { member: TeamMember; index: number }) {
               <img
                 src={member.photo}
                 alt={member.name}
-                className="w-full h-full object-cover object-top"
-              />
-              {/* Face blur overlay - covers top portion where face is */}
-              <div
-                className="absolute inset-x-0 top-0"
-                style={{
-                  height: "70%",
-                  backdropFilter: "blur(10px)",
-                  WebkitBackdropFilter: "blur(10px)",
-                }}
+                className="w-full h-full object-cover object-center"
               />
             </div>
           </div>
