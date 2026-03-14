@@ -701,7 +701,7 @@ function AboutSection() {
                   >
                     <img
                       src="/assets/uploads/IMG_5579-3.jpeg"
-                      alt="Fahad"
+                      alt="Fahad Khan"
                       className="w-full h-full object-cover object-top"
                     />
                   </div>
@@ -716,7 +716,7 @@ function AboutSection() {
                     Co-Founder
                   </Badge>
                   <h3 className="font-display text-lg font-bold text-foreground leading-tight">
-                    Fahad
+                    Fahad Khan
                   </h3>
                   <p
                     className="font-heading font-medium text-xs mt-0.5"
@@ -724,22 +724,6 @@ function AboutSection() {
                   >
                     MENA CEO
                   </p>
-                </div>
-              </div>
-
-              {/* Brothers Badge */}
-              <div className="flex justify-center mb-6">
-                <div
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-heading text-xs font-bold tracking-wide"
-                  style={{
-                    background: "oklch(0.82 0.18 75 / 0.12)",
-                    border: "1px solid oklch(0.82 0.18 75 / 0.45)",
-                    color: "oklch(0.82 0.18 75)",
-                  }}
-                >
-                  <span>♛</span>
-                  Real Brothers &amp; Business Partners
-                  <span>♛</span>
                 </div>
               </div>
 
@@ -1071,7 +1055,6 @@ function PricingSection() {
       services: [
         "Video Editing – up to 2 projects per month",
         "Thumbnail Design – up to 3 designs per month",
-        "Content Clipping – up to 4 clips per month",
         "Promotion Support – 2 promotional actions",
         "Basic creator / business management support",
       ],
@@ -1089,7 +1072,6 @@ function PricingSection() {
       services: [
         "Video Editing – up to 4 projects per month",
         "Thumbnail Design – up to 4 designs per month",
-        "Content Clipping – up to 4 clips per month",
         "Promotion Campaigns – 4 promotional actions",
         "Creator / Business management support",
       ],
@@ -1107,7 +1089,6 @@ function PricingSection() {
       services: [
         "Video Editing – up to 6 projects per month",
         "Thumbnail Design – up to 6 designs per month",
-        "Content Clipping – up to 6 clips per month",
         "Promotion Campaigns – 6 promotional actions",
         "Full creator / business management support",
       ],
@@ -1165,10 +1146,10 @@ function PricingSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16 reveal">
           <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-4 block">
-            Services &amp; Pricing
+            Pricing &amp; Packages
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Services &amp; <span className="gradient-text">Pricing</span>
+            Pricing &amp; <span className="gradient-text">Packages</span>
           </h2>
           <div className="section-line mx-auto mb-4" />
           <p className="font-body text-muted-foreground max-w-xl mx-auto">
@@ -1178,6 +1159,22 @@ function PricingSection() {
         </div>
 
         {/* Custom / One-Time Projects — ABOVE monthly plans */}
+        <div className="flex items-center gap-4 mb-6 reveal">
+          <div
+            className="flex-1 h-px"
+            style={{ background: "oklch(0.54 0.24 293 / 0.2)" }}
+          />
+          <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary">
+            Custom Plans
+          </span>
+          <div
+            className="flex-1 h-px"
+            style={{ background: "oklch(0.54 0.24 293 / 0.2)" }}
+          />
+        </div>
+        <p className="font-body text-muted-foreground text-sm text-center mb-10 reveal">
+          Available for custom projects or specific client requirements.
+        </p>
         <div className="mb-20 reveal">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {customServices.map((svc, i) => {
@@ -2192,7 +2189,7 @@ const TEAM_MEMBERS: TeamMember[] = [
       "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
   },
   {
-    name: "Fahad",
+    name: "Fahad Khan",
     initials: "F",
     role: "Co-Founder",
     title: "Co-Founder / MENA CEO",
@@ -2417,6 +2414,161 @@ const SOCIAL_LINKS = [
 ];
 
 /* ─── Footer ────────────────────────────────────────────────── */
+/* ─── FAQ Section ──────────────────────────────────────────── */
+const FAQ_ITEMS = [
+  {
+    question: "What services does Capital Partners offer?",
+    answer:
+      "We offer Video Editing, Thumbnail Design, Promotion Campaigns, Assets Management, Custom Designing, and Customer Service. All services are available as one-time custom projects or as part of a monthly subscription plan.",
+  },
+  {
+    question: "How do the Monthly Plans work?",
+    answer:
+      "Monthly plans give you a fixed set of deliverables each month at a discounted rate. You choose Basic, Professional, or Pro depending on how much volume and quality you need, and we handle the rest on a recurring basis.",
+  },
+  {
+    question: "Can I request a custom package not listed?",
+    answer:
+      "Yes. Custom Plans are available for specific projects or unique client requirements. Reach out via the Request form or contact us directly and we will put together a tailored solution.",
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer:
+      "We primarily accept TapTap Send for international transfers. Crypto payments are also supported. PayPal is coming soon.",
+  },
+  {
+    question: "How do I get started?",
+    answer:
+      "Fill out the Request Our Services form on this page, or reach out to us on Discord. Our team will get back to you within 24 hours to discuss your project.",
+  },
+  {
+    question: "Do you offer revisions?",
+    answer:
+      "Yes. All plans and custom projects include revision rounds to ensure you are completely satisfied with the final deliverable.",
+  },
+  {
+    question: "Which regions do you serve?",
+    answer:
+      "We work with clients globally. Our Co-Founder oversees the MENA region specifically, but we serve creators and businesses worldwide.",
+  },
+];
+
+function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <section id="faq" className="py-20 px-4 relative" data-ocid="faq.section">
+      <div className="max-w-3xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <span
+            className="font-heading text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full border mb-4 inline-block"
+            style={{
+              color: "oklch(0.78 0.18 300)",
+              borderColor: "oklch(0.78 0.18 300 / 0.3)",
+              background: "oklch(0.78 0.18 300 / 0.08)",
+            }}
+          >
+            Got Questions?
+          </span>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">
+            Frequently Asked Questions
+          </h2>
+          <div className="section-line mx-auto mb-4" />
+          <p className="font-body text-muted-foreground text-sm max-w-xl mx-auto">
+            Everything you need to know about working with Capital Partners.
+          </p>
+        </div>
+
+        {/* Accordion */}
+        <div className="space-y-3">
+          {FAQ_ITEMS.map((item, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <div
+                key={item.question}
+                className="rounded-xl border overflow-hidden transition-all duration-300"
+                style={{
+                  borderColor: isOpen
+                    ? "oklch(0.78 0.18 300 / 0.5)"
+                    : "oklch(1 0 0 / 0.08)",
+                  background: isOpen
+                    ? "oklch(0.78 0.18 300 / 0.06)"
+                    : "oklch(1 0 0 / 0.03)",
+                }}
+                data-ocid={`faq.item.${i + 1}`}
+              >
+                <button
+                  className="w-full flex items-center justify-between px-6 py-4 text-left gap-4"
+                  type="button"
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                  data-ocid={`faq.toggle.${i + 1}`}
+                >
+                  <span className="font-heading font-semibold text-sm text-foreground">
+                    {item.question}
+                  </span>
+                  <span
+                    className="shrink-0 transition-transform duration-300"
+                    style={{
+                      color: "oklch(0.78 0.18 300)",
+                      transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
+                    }}
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M8 2v12M2 8h12"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                {isOpen && (
+                  <div className="px-6 pb-5">
+                    <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                      {item.answer}
+                    </p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Bottom CTA */}
+        <p className="text-center font-body text-xs text-muted-foreground mt-10">
+          Still have questions?{" "}
+          <a
+            href="#contact"
+            className="underline underline-offset-2"
+            style={{ color: "oklch(0.78 0.18 300)" }}
+          >
+            Contact us directly
+          </a>{" "}
+          or join our{" "}
+          <a
+            href="https://discord.gg/Te3PFxQ2SM"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2"
+            style={{ color: "oklch(0.78 0.18 300)" }}
+          >
+            Discord community
+          </a>
+          .
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   const year = new Date().getFullYear();
   const hostname = window.location.hostname;
@@ -2568,6 +2720,7 @@ export default function App() {
         <PortfolioSection />
         <WhyChooseUsSection />
         <TeamSection />
+        <FAQSection />
       </main>
 
       <Footer />
