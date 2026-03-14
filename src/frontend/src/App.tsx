@@ -119,7 +119,7 @@ function Navbar() {
           className="flex items-center gap-3 group"
         >
           <img
-            src="/assets/uploads/IMG_5419-1.png"
+            src="/assets/uploads/IMG_5585-1.png"
             alt="Capital Partners Logo"
             className="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300"
             style={{ mixBlendMode: "screen" }}
@@ -458,7 +458,7 @@ function HeroSection() {
               }}
             />
             <img
-              src="/assets/uploads/IMG_5419-1.png"
+              src="/assets/uploads/IMG_5585-1.png"
               alt="Capital Partners"
               className="relative w-36 h-36 md:w-48 md:h-48 object-contain drop-shadow-2xl"
               style={{
@@ -2590,7 +2590,7 @@ function Footer() {
           {/* Logo */}
           <div className="flex items-center gap-3">
             <img
-              src="/assets/uploads/IMG_5419-1.png"
+              src="/assets/uploads/IMG_5585-1.png"
               alt="Capital Partners"
               className="w-10 h-10 object-contain"
               style={{ mixBlendMode: "screen" }}
