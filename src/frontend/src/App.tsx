@@ -667,7 +667,7 @@ function AboutSection() {
                     }}
                   >
                     <img
-                      src="/assets/generated/ceo-abdul-ahad.dim_400x500.jpg"
+                      src="/assets/generated/ceo-clear-headshot.dim_400x400.jpg"
                       alt="Abdul Ahad"
                       className="w-full h-full object-cover object-center"
                     />
@@ -700,7 +700,7 @@ function AboutSection() {
                     }}
                   >
                     <img
-                      src="/assets/uploads/9d10f337-a930-4379-83a4-2bc1a16ed30a-1-1.jpeg"
+                      src="/assets/uploads/IMG_5579-3.jpeg"
                       alt="Fahad"
                       className="w-full h-full object-cover object-top"
                     />
@@ -2187,7 +2187,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     description:
       "The driving force behind Capital Partners, combining strategic insight with entrepreneurial fire to lead the agency toward global impact.",
     available: true,
-    photo: "/assets/generated/ceo-abdul-ahad.dim_400x500.jpg",
+    photo: "/assets/generated/ceo-clear-headshot.dim_400x400.jpg",
     gradient:
       "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
   },
@@ -2199,7 +2199,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     description:
       "Brings deep business strategy and operational expertise, helping Capital Partners scale with precision and purpose.",
     available: true,
-    photo: "/assets/uploads/9d10f337-a930-4379-83a4-2bc1a16ed30a-1-1.jpeg",
+    photo: "/assets/uploads/IMG_5579-3.jpeg",
     gradient:
       "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
   },
@@ -2211,7 +2211,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     description:
       "Drives operations and client success with sharp organizational skills, ensuring every project is executed at the highest standard.",
     available: true,
-    photo: "/assets/generated/anas-coo-headshot.dim_400x400.jpg",
+    photo: "/assets/uploads/IMG_5576-2.jpeg",
     gradient:
       "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
