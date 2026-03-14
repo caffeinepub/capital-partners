@@ -9,16 +9,23 @@ import {
   CheckCircle2,
   ChevronDown,
   DollarSign,
+  Film,
+  Gem,
   Globe,
+  Handshake,
+  ImageIcon,
+  LayoutGrid,
   Loader2,
   Lock,
   Mail,
   Menu,
   MessageSquare,
+  Palette,
   Rocket,
   Star,
   Target,
   TrendingUp,
+  Trophy,
   Users,
   X,
   Zap,
@@ -660,7 +667,7 @@ function AboutSection() {
                     }}
                   >
                     <img
-                      src="/assets/generated/team-abdul-ahad.dim_400x400.jpg"
+                      src="/assets/generated/ceo-abdul-ahad.dim_400x500.jpg"
                       alt="Abdul Ahad"
                       className="w-full h-full object-cover object-center"
                     />
@@ -693,9 +700,9 @@ function AboutSection() {
                     }}
                   >
                     <img
-                      src="/assets/uploads/9d10f337-a930-4379-83a4-2bc1a16ed30a-1.jpeg"
+                      src="/assets/uploads/9d10f337-a930-4379-83a4-2bc1a16ed30a-1-1.jpeg"
                       alt="Fahad"
-                      className="w-full h-full object-cover object-center"
+                      className="w-full h-full object-cover object-top"
                     />
                   </div>
                   <Badge
@@ -790,6 +797,24 @@ interface ServiceItem {
 
 const SERVICES: ServiceItem[] = [
   {
+    icon: <Film size={22} />,
+    title: "Video Editing",
+    description:
+      "Professional video editing for creators and businesses — from short-form content and YouTube videos to brand reels and promotional films.",
+    tags: ["Editing", "YouTube", "Reels"],
+    available: true,
+    color: "oklch(0.65 0.22 300)",
+  },
+  {
+    icon: <ImageIcon size={22} />,
+    title: "Thumbnail Design",
+    description:
+      "Eye-catching thumbnail designs that drive clicks, boost CTR, and elevate your brand across YouTube, social media, and digital platforms.",
+    tags: ["Design", "Thumbnails", "Branding"],
+    available: true,
+    color: "oklch(0.72 0.22 293)",
+  },
+  {
     icon: <Briefcase size={22} />,
     title: "Management",
     description:
@@ -806,15 +831,6 @@ const SERVICES: ServiceItem[] = [
     tags: ["Brand", "Marketing", "Growth"],
     available: true,
     color: "oklch(0.65 0.22 300)",
-  },
-  {
-    icon: <Users size={22} />,
-    title: "Freelancing",
-    description:
-      "Access to a curated network of elite freelance talent across design, development, content, and strategy — matched precisely to your project needs.",
-    tags: ["Talent", "Projects", "Network"],
-    available: true,
-    color: "oklch(0.60 0.20 275)",
   },
   {
     icon: <BarChart3 size={22} />,
@@ -975,8 +991,8 @@ function ServicesSection() {
           </h2>
           <div className="section-line mx-auto mb-4" />
           <p className="font-body text-muted-foreground max-w-xl mx-auto">
-            A comprehensive suite of premium services designed to accelerate
-            growth, maximize performance, and build lasting success.
+            From video editing and thumbnail design to management, promotions,
+            and business strategy — everything your brand needs to grow.
           </p>
         </div>
 
@@ -1000,6 +1016,7 @@ function PricingSection() {
     discord: "",
     business: "",
     plan: "",
+    subService: "",
     details: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -1017,7 +1034,7 @@ function PricingSection() {
       setIsSubmitting(true);
       try {
         if (actor) {
-          const fullMessage = `Phone/WhatsApp: ${phone}\nDiscord: ${discord}\nBusiness: ${business}\nPlan: ${plan}\n\nProject Details:\n${details}`;
+          const fullMessage = `Phone/WhatsApp: ${phone}\nDiscord: ${discord}\nBusiness: ${business}\nService Type: ${plan}${reqForm.subService ? `\nSelected: ${reqForm.subService}` : ""}\n\nProject Details:\n${details}`;
           await actor.submitContactMessage(name, email, fullMessage);
         }
         setSubmitted(true);
@@ -1029,6 +1046,7 @@ function PricingSection() {
           discord: "",
           business: "",
           plan: "",
+          subService: "",
           details: "",
         });
       } catch {
@@ -1100,28 +1118,33 @@ function PricingSection() {
   const customServices = [
     {
       name: "Video Editing",
-      range: "$149 – $799",
+      range: "Starting from $99",
       note: "depending on complexity",
     },
     {
       name: "Thumbnail Design",
-      range: "$99 – $599",
+      range: "Starting from $49",
       note: "depending on design level",
     },
     {
-      name: "Content Clipping",
-      range: "$59 – $399",
-      note: "depending on number of clips",
-    },
-    {
       name: "Promotion Services",
-      range: "$99 – $799",
+      range: "Starting from $99",
       note: "depending on campaign size",
     },
     {
-      name: "Management Services",
-      range: "$199 – $999",
+      name: "Assets Management",
+      range: "Starting from $99",
       note: "depending on project scope",
+    },
+    {
+      name: "Custom Designing",
+      range: "Starting from $99",
+      note: "depends on task",
+    },
+    {
+      name: "Customer Service",
+      range: "Starting from $99",
+      note: "depending on task and scope",
     },
   ];
 
@@ -1156,34 +1179,15 @@ function PricingSection() {
 
         {/* Custom / One-Time Projects — ABOVE monthly plans */}
         <div className="mb-20 reveal">
-          <div className="text-center mb-10">
-            <span
-              className="font-heading text-xs font-bold tracking-[0.3em] uppercase mb-3 block"
-              style={{ color: "oklch(0.82 0.18 75)" }}
-            >
-              One-Time Projects
-            </span>
-            <h3 className="font-display text-3xl font-bold text-foreground mb-2">
-              Custom /{" "}
-              <span style={{ color: "oklch(0.82 0.18 75)" }}>One-Time</span>{" "}
-              Projects
-            </h3>
-            <div className="section-line mx-auto mb-4" />
-            <p className="font-body text-muted-foreground max-w-2xl mx-auto">
-              Need a single project done? Choose any service individually — no
-              subscription required.
-            </p>
-          </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {customServices.map((svc, i) => {
-              const icons = ["🎬", "🖼️", "✂️", "📣", "⚙️"];
               const colors = [
                 "oklch(0.65 0.22 300)",
-                "oklch(0.72 0.22 293)",
-                "oklch(0.60 0.20 275)",
-                "oklch(0.72 0.16 75)",
-                "oklch(0.66 0.20 150)",
+                "oklch(0.65 0.22 300)",
+                "oklch(0.65 0.22 300)",
+                "oklch(0.65 0.22 300)",
+                "oklch(0.65 0.22 300)",
+                "oklch(0.65 0.22 300)",
               ];
               return (
                 <div
@@ -1207,15 +1211,6 @@ function PricingSection() {
                   }}
                 >
                   <div className="flex items-start justify-between">
-                    <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
-                      style={{
-                        background: `${colors[i]}18`,
-                        border: `1px solid ${colors[i]}30`,
-                      }}
-                    >
-                      {icons[i]}
-                    </div>
                     <div
                       className="font-heading text-xs px-2 py-1 rounded-full font-semibold"
                       style={{
@@ -1253,9 +1248,9 @@ function PricingSection() {
                     }}
                     className="mt-auto w-full py-2 rounded-xl font-heading font-semibold text-xs transition-all duration-200 hover:opacity-90"
                     style={{
-                      background: `${colors[i]}14`,
-                      border: `1px solid ${colors[i]}40`,
-                      color: colors[i],
+                      background: colors[i],
+                      border: "none",
+                      color: "#fff",
                     }}
                   >
                     Request Custom →
@@ -1444,7 +1439,6 @@ function PricingSection() {
             }}
           >
             <div className="flex flex-wrap items-center justify-center gap-3">
-              <span>🌍</span>
               <span className="font-semibold text-foreground/80">
                 Payment Methods
               </span>
@@ -1647,14 +1641,18 @@ function PricingSection() {
                     htmlFor="req-plan"
                     className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
                   >
-                    Selected Service Plan *
+                    Service Type *
                   </label>
                   <select
                     id="req-plan"
                     data-ocid="request.plan.select"
                     value={reqForm.plan}
                     onChange={(e) =>
-                      setReqForm((p) => ({ ...p, plan: e.target.value }))
+                      setReqForm((p) => ({
+                        ...p,
+                        plan: e.target.value,
+                        subService: "",
+                      }))
                     }
                     className="w-full px-4 py-2.5 rounded-lg font-body text-sm text-foreground border"
                     style={{
@@ -1664,22 +1662,105 @@ function PricingSection() {
                     required
                   >
                     <option value="" disabled>
-                      Select a plan or service
+                      Select a service type
                     </option>
-                    <option value="Creator Launch Plan">
-                      Creator Launch Plan — $150/mo
-                    </option>
-                    <option value="Brand Growth Plan">
-                      Brand Growth Plan — $300/mo
-                    </option>
-                    <option value="Business Accelerator Plan">
-                      Business Accelerator Plan — $600/mo
-                    </option>
+                    <option value="Monthly Plan">Monthly Plan</option>
                     <option value="Custom Service">
                       Custom Service (One-Time Project)
                     </option>
                   </select>
                 </div>
+
+                {reqForm.plan === "Monthly Plan" && (
+                  <div className="flex flex-col gap-2">
+                    <label
+                      htmlFor="req-monthly-plan"
+                      className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+                    >
+                      Select Monthly Plan *
+                    </label>
+                    <select
+                      id="req-monthly-plan"
+                      data-ocid="request.subservice.select"
+                      value={reqForm.subService}
+                      onChange={(e) =>
+                        setReqForm((p) => ({
+                          ...p,
+                          subService: e.target.value,
+                        }))
+                      }
+                      className="w-full px-4 py-2.5 rounded-lg font-body text-sm text-foreground border"
+                      style={{
+                        background: "oklch(0.08 0.02 285)",
+                        borderColor: "oklch(0.22 0.04 285 / 0.6)",
+                      }}
+                      required
+                    >
+                      <option value="" disabled>
+                        Choose a plan
+                      </option>
+                      <option value="Basic Plan — $199/month">
+                        Basic Plan — $199/month
+                      </option>
+                      <option value="Professional Plan — $299/month">
+                        Professional Plan — $299/month
+                      </option>
+                      <option value="Pro Plan — $499/month">
+                        Pro Plan — $499/month
+                      </option>
+                    </select>
+                  </div>
+                )}
+
+                {reqForm.plan === "Custom Service" && (
+                  <div className="flex flex-col gap-2">
+                    <label
+                      htmlFor="req-custom-service"
+                      className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+                    >
+                      Select Custom Service *
+                    </label>
+                    <select
+                      id="req-custom-service"
+                      data-ocid="request.subservice.select"
+                      value={reqForm.subService}
+                      onChange={(e) =>
+                        setReqForm((p) => ({
+                          ...p,
+                          subService: e.target.value,
+                        }))
+                      }
+                      className="w-full px-4 py-2.5 rounded-lg font-body text-sm text-foreground border"
+                      style={{
+                        background: "oklch(0.08 0.02 285)",
+                        borderColor: "oklch(0.22 0.04 285 / 0.6)",
+                      }}
+                      required
+                    >
+                      <option value="" disabled>
+                        Choose a service
+                      </option>
+                      <option value="Video Editing">
+                        Video Editing — Starting from $99
+                      </option>
+                      <option value="Thumbnail Design">
+                        Thumbnail Design — Starting from $49
+                      </option>
+                      <option value="Promotion Services">
+                        Promotion Services — $99–$799
+                      </option>
+                      <option value="Assets Management">
+                        Assets Management — Starting from $99
+                      </option>
+                      <option value="Custom Designing">
+                        Custom Designing — Starting from $99
+                      </option>
+                      <option value="Customer Service">
+                        Customer Service — $99–$10,000
+                      </option>
+                    </select>
+                  </div>
+                )}
 
                 <div className="flex flex-col gap-2">
                   <label
@@ -1766,32 +1847,32 @@ function PricingSection() {
 function WhyChooseUsSection() {
   const reasons = [
     {
-      icon: "🏆",
+      icon: Trophy,
       title: "Proven Results",
       desc: "We measure our success by your growth. Every strategy is built around tangible, measurable outcomes for your brand.",
     },
     {
-      icon: "⚡",
+      icon: Zap,
       title: "Fast Turnaround",
       desc: "We respond within 24 hours and deliver projects on schedule — no delays, no excuses.",
     },
     {
-      icon: "🎯",
+      icon: Target,
       title: "Tailored Strategy",
       desc: "No cookie-cutter solutions. Every plan is custom-built around your specific goals, audience, and brand identity.",
     },
     {
-      icon: "💎",
+      icon: Gem,
       title: "Premium Quality",
       desc: "From content editing to full business consulting, we deliver agency-level quality at every tier.",
     },
     {
-      icon: "🤝",
+      icon: Handshake,
       title: "Long-Term Partnership",
       desc: "We don't just complete projects — we build lasting relationships and grow alongside your business.",
     },
     {
-      icon: "🌐",
+      icon: Globe,
       title: "Full-Service Agency",
       desc: "Content, branding, marketing, web, and consulting — everything under one roof for seamless execution.",
     },
@@ -1858,10 +1939,13 @@ function WhyChooseUsSection() {
               }}
             >
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
+                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{ background: "oklch(0.54 0.24 293 / 0.12)" }}
               >
-                {reason.icon}
+                <reason.icon
+                  size={22}
+                  style={{ color: "oklch(0.72 0.22 293)" }}
+                />
               </div>
               <div>
                 <h3 className="font-heading font-bold text-foreground text-base mb-2">
@@ -1916,202 +2000,166 @@ function WhyChooseUsSection() {
 }
 
 /* ─── Portfolio Section ─────────────────────────────────────── */
-interface ProjectItem {
-  title: string;
-  type: string;
-  description: string;
-  image: string;
-  color: string;
-}
-
-const PROJECTS: ProjectItem[] = [
-  {
-    title: "Brand Identity Campaign",
-    type: "Branding",
-    description:
-      "Complete visual identity system for a luxury consumer brand — logo, typography, and brand guidelines.",
-    image: "/assets/generated/portfolio-brand-identity.dim_800x500.jpg",
-    color: "oklch(0.54 0.24 293)",
-  },
-  {
-    title: "Executive Growth Strategy",
-    type: "Strategy",
-    description:
-      "A transformative 12-month growth roadmap delivered for a mid-market consultancy.",
-    image: "/assets/generated/portfolio-growth-strategy.dim_800x500.jpg",
-    color: "oklch(0.72 0.16 75)",
-  },
-  {
-    title: "Digital Promotions Suite",
-    type: "Marketing",
-    description:
-      "Multi-channel digital marketing campaign achieving 400% increase in brand reach.",
-    image: "/assets/generated/portfolio-digital-promos.dim_800x500.jpg",
-    color: "oklch(0.60 0.22 300)",
-  },
-  {
-    title: "Investment Portfolio Design",
-    type: "Investment",
-    description:
-      "Strategic asset allocation framework for a high-net-worth private investment group.",
-    image: "/assets/generated/portfolio-investment.dim_800x500.jpg",
-    color: "oklch(0.66 0.20 150)",
-  },
-  {
-    title: "Corporate Management System",
-    type: "Management",
-    description:
-      "End-to-end enterprise management platform deployed across three regional offices.",
-    image: "/assets/generated/portfolio-management.dim_800x500.jpg",
-    color: "oklch(0.54 0.24 293)",
-  },
-  {
-    title: "Social Media Blitz",
-    type: "Promotions",
-    description:
-      "Viral social media campaign generating 2M+ impressions in 30 days across platforms.",
-    image: "/assets/generated/portfolio-social-blitz.dim_800x500.jpg",
-    color: "oklch(0.82 0.18 75)",
-  },
-];
-
-function PortfolioCard({
-  project,
-  index,
-}: { project: ProjectItem; index: number }) {
-  return (
-    <article
-      data-ocid={`portfolio.project.card.${index + 1}`}
-      className="reveal portfolio-card rounded-2xl overflow-hidden border group cursor-pointer"
-      style={{
-        background: "oklch(0.09 0.02 285 / 0.8)",
-        borderColor: "oklch(0.22 0.04 285 / 0.8)",
-        transitionDelay: `${index * 80}ms`,
-      }}
-    >
-      {/* Image */}
-      <div className="relative overflow-hidden aspect-video">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="card-img w-full h-full object-cover"
-          loading="lazy"
-        />
-        <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          style={{
-            background: `linear-gradient(to top, ${project.color}33, transparent)`,
-          }}
-        />
-        <Badge
-          className="absolute top-3 left-3 font-heading font-bold text-xs"
-          style={{
-            background: `${project.color}22`,
-            borderColor: `${project.color}55`,
-            color: project.color,
-          }}
-        >
-          {project.type}
-        </Badge>
-      </div>
-
-      {/* Content */}
-      <div className="p-5">
-        <h3 className="font-heading text-base font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-          {project.title}
-        </h3>
-        <p className="font-body text-xs text-muted-foreground leading-relaxed">
-          {project.description}
-        </p>
-      </div>
-    </article>
-  );
-}
-
 function PortfolioSection() {
+  const [activeFilter, setActiveFilter] = useState<string>("All");
+  const filters = ["All", "Editing", "Designing", "Marketing", "Management"];
+
+  const projects = [
+    {
+      id: 1,
+      title: "Brand Identity Design",
+      category: "Designing",
+      icon: Palette,
+    },
+    { id: 2, title: "Video Edit Showreel", category: "Editing", icon: Film },
+    {
+      id: 3,
+      title: "Growth Campaign",
+      category: "Marketing",
+      icon: TrendingUp,
+    },
+    {
+      id: 4,
+      title: "Asset Management",
+      category: "Management",
+      icon: LayoutGrid,
+    },
+    {
+      id: 5,
+      title: "Thumbnail Collection",
+      category: "Designing",
+      icon: ImageIcon,
+    },
+    { id: 6, title: "Content Series Edit", category: "Editing", icon: Film },
+    { id: 7, title: "Promotion Strategy", category: "Marketing", icon: Target },
+    {
+      id: 8,
+      title: "Business Operations",
+      category: "Management",
+      icon: Briefcase,
+    },
+  ];
+
+  const filtered =
+    activeFilter === "All"
+      ? projects
+      : projects.filter((p) => p.category === activeFilter);
+
   return (
     <section
       id="portfolio"
       data-ocid="portfolio.section"
       className="relative py-28 overflow-hidden"
-      style={{ background: "oklch(0.07 0.01 280 / 0.5)" }}
     >
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 40% at 50% 0%, oklch(0.54 0.24 293 / 0.06), transparent 60%)",
+        }}
+      />
       <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-16 reveal">
+        <div className="text-center mb-12 reveal">
           <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-4 block">
             Our Work
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Portfolio &amp; <span className="gradient-text">Projects</span>
+            Our <span className="gradient-text">Portfolio</span>
           </h2>
           <div className="section-line mx-auto mb-4" />
           <p className="font-body text-muted-foreground max-w-xl mx-auto">
-            Our portfolio is being curated. Exceptional work is on its way.
+            A showcase of our best work across all service categories. Full
+            portfolio coming soon.
           </p>
         </div>
 
-        {/* Blurred portfolio grid with Coming Soon overlay */}
-        <div className="relative reveal">
-          {/* Blurred cards underneath */}
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            style={{
-              filter: "blur(7px)",
-              pointerEvents: "none",
-              userSelect: "none",
-            }}
-            aria-hidden="true"
-          >
-            {PROJECTS.map((project, i) => (
-              <PortfolioCard key={project.title} project={project} index={i} />
-            ))}
-          </div>
-
-          {/* Coming Soon overlay */}
-          <div
-            className="absolute inset-0 flex flex-col items-center justify-center gap-6 rounded-2xl"
-            style={{
-              background:
-                "linear-gradient(to bottom, oklch(0.07 0.01 280 / 0.5) 0%, oklch(0.05 0 0 / 0.80) 60%, oklch(0.05 0 0 / 0.95) 100%)",
-            }}
-          >
-            {/* Lock icon */}
-            <div
-              className="w-16 h-16 rounded-2xl flex items-center justify-center"
-              style={{
-                background:
-                  "linear-gradient(135deg, oklch(0.44 0.22 285 / 0.3), oklch(0.60 0.26 295 / 0.15))",
-                border: "1px solid oklch(0.54 0.24 293 / 0.4)",
-                boxShadow: "0 0 40px oklch(0.54 0.24 293 / 0.3)",
-              }}
+        {/* Filter Tabs */}
+        <div
+          className="flex flex-wrap justify-center gap-2 mb-10 reveal"
+          data-ocid="portfolio.filter.tab"
+        >
+          {filters.map((f) => (
+            <button
+              key={f}
+              type="button"
+              onClick={() => setActiveFilter(f)}
+              className="px-5 py-2 rounded-full font-heading font-semibold text-xs tracking-wider uppercase transition-all duration-200"
+              style={
+                activeFilter === f
+                  ? {
+                      background: "oklch(0.54 0.24 293)",
+                      color: "#fff",
+                      border: "1px solid oklch(0.54 0.24 293)",
+                    }
+                  : {
+                      background: "oklch(0.13 0.05 285 / 0.8)",
+                      color: "oklch(0.70 0.12 293)",
+                      border: "1px solid oklch(0.54 0.24 293 / 0.3)",
+                    }
+              }
             >
-              <Lock size={28} style={{ color: "oklch(0.72 0.22 293)" }} />
-            </div>
+              {f}
+            </button>
+          ))}
+        </div>
 
-            <div className="text-center space-y-3 px-6 max-w-md">
-              <span
-                className="inline-flex items-center gap-2 font-heading font-bold text-base px-6 py-2.5 rounded-full border tracking-widest uppercase"
+        {/* Project Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {filtered.map((project, i) => {
+            const Icon = project.icon;
+            return (
+              <div
+                key={project.id}
+                data-ocid={`portfolio.category.card.${i + 1}`}
+                className="reveal group relative rounded-2xl overflow-hidden border transition-all duration-300 hover:-translate-y-1"
                 style={{
-                  background: "oklch(0.54 0.24 293 / 0.18)",
-                  borderColor: "oklch(0.54 0.24 293 / 0.5)",
-                  color: "oklch(0.80 0.22 293)",
-                  boxShadow: "0 0 30px oklch(0.54 0.24 293 / 0.2)",
+                  background:
+                    "linear-gradient(140deg, oklch(0.13 0.05 285 / 0.95), oklch(0.09 0.02 280 / 0.95))",
+                  borderColor: "oklch(0.54 0.24 293 / 0.25)",
+                  transitionDelay: `${i * 60}ms`,
                 }}
               >
-                <Star size={13} className="fill-current" />
-                Coming Soon
-                <Star size={13} className="fill-current" />
-              </span>
-              <p
-                className="font-body text-sm leading-relaxed"
-                style={{ color: "oklch(0.55 0.08 285)" }}
-              >
-                Our portfolio showcase is being curated with precision.
-                Exceptional work will be revealed very soon.
-              </p>
-            </div>
-          </div>
+                {/* Image placeholder */}
+                <div
+                  className="relative flex items-center justify-center"
+                  style={{ height: 160, background: "oklch(0.10 0.03 285)" }}
+                >
+                  <Icon
+                    size={36}
+                    style={{ color: "oklch(0.54 0.24 293 / 0.5)" }}
+                  />
+                  {/* Coming Soon overlay */}
+                  <div
+                    className="absolute inset-0 flex items-center justify-center"
+                    style={{ background: "oklch(0.05 0.02 285 / 0.6)" }}
+                  >
+                    <span
+                      className="font-heading font-bold text-xs px-4 py-1.5 rounded-full border tracking-widest uppercase"
+                      style={{
+                        background: "oklch(0.54 0.24 293 / 0.2)",
+                        borderColor: "oklch(0.54 0.24 293 / 0.5)",
+                        color: "oklch(0.80 0.22 293)",
+                      }}
+                    >
+                      Coming Soon
+                    </span>
+                  </div>
+                </div>
+                {/* Card info */}
+                <div className="p-4">
+                  <span
+                    className="font-heading text-xs font-semibold tracking-wider uppercase mb-1 block"
+                    style={{ color: "oklch(0.72 0.22 293)" }}
+                  >
+                    {project.category}
+                  </span>
+                  <h3 className="font-heading font-bold text-sm text-foreground">
+                    {project.title}
+                  </h3>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -2139,7 +2187,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     description:
       "The driving force behind Capital Partners, combining strategic insight with entrepreneurial fire to lead the agency toward global impact.",
     available: true,
-    photo: "/assets/generated/team-abdul-ahad.dim_400x400.jpg",
+    photo: "/assets/generated/ceo-abdul-ahad.dim_400x500.jpg",
     gradient:
       "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
   },
@@ -2147,71 +2195,23 @@ const TEAM_MEMBERS: TeamMember[] = [
     name: "Fahad",
     initials: "F",
     role: "Co-Founder",
-    title: "Strategic Co-Founder",
+    title: "Co-Founder / MENA CEO",
     description:
       "Brings deep business strategy and operational expertise, helping Capital Partners scale with precision and purpose.",
     available: true,
-    photo: "/assets/uploads/9d10f337-a930-4379-83a4-2bc1a16ed30a-1.jpeg",
+    photo: "/assets/uploads/9d10f337-a930-4379-83a4-2bc1a16ed30a-1-1.jpeg",
     gradient:
       "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
   },
   {
-    name: "Ali",
-    initials: "A",
-    role: "Editor",
-    title: "Lead Editor",
-    description:
-      "Crafts compelling video content that captivates audiences and elevates brand storytelling to the highest level.",
-    available: true,
-    photo: "/assets/generated/team-ali.dim_400x400.jpg",
-    gradient:
-      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
-  },
-  {
-    name: "Anikit",
-    initials: "AN",
-    role: "Designer",
-    title: "Creative Designer",
-    description:
-      "Brings visuals to life with premium design work that defines the aesthetic identity of every brand we work with.",
-    available: true,
-    photo: "/assets/generated/team-anikit.dim_400x400.jpg",
-    gradient:
-      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
-  },
-  {
     name: "Anas",
     initials: "AN",
-    role: "Head of Promotions",
-    title: "Promotions Strategist",
+    role: "COO",
+    title: "Chief Operating Officer",
     description:
-      "Leads promotional campaigns with data-driven strategies that amplify brand visibility and audience engagement.",
+      "Drives operations and client success with sharp organizational skills, ensuring every project is executed at the highest standard.",
     available: true,
-    photo: "/assets/generated/team-anas.dim_400x400.jpg",
-    gradient:
-      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
-  },
-  {
-    name: "Spoke",
-    initials: "SP",
-    role: "Head of Clippers",
-    title: "Clipping Operations Lead",
-    description:
-      "Leads our content clipping team, delivering high-impact short-form clips that drive engagement across all platforms.",
-    available: true,
-    photo: "/assets/generated/team-spoke.dim_400x400.jpg",
-    gradient:
-      "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
-  },
-  {
-    name: "Ahmad",
-    initials: "AH",
-    role: "Head of Management",
-    title: "Operations Manager",
-    description:
-      "Drives internal operations and client management with sharp organizational skills and a client-first mindset.",
-    available: true,
-    photo: "/assets/generated/team-ahmad.dim_400x400.jpg",
+    photo: "/assets/generated/anas-coo-headshot.dim_400x400.jpg",
     gradient:
       "linear-gradient(135deg, oklch(0.30 0.12 285), oklch(0.45 0.18 295))",
   },
@@ -2245,7 +2245,7 @@ function TeamCard({ member, index }: { member: TeamMember; index: number }) {
               <img
                 src={member.photo}
                 alt={member.name}
-                className="w-full h-full object-cover object-center"
+                className={`w-full h-full object-cover ${member.photo?.includes("/assets/uploads/") ? "object-top" : "object-center"}`}
               />
             </div>
           </div>
@@ -2366,7 +2366,7 @@ function TeamSection() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {TEAM_MEMBERS.map((member, i) => (
             <TeamCard key={member.role} member={member} index={i} />
           ))}
@@ -2562,10 +2562,10 @@ export default function App() {
 
       <main>
         <HeroSection />
+        <PortfolioSection />
         <AboutSection />
         <ServicesSection />
         <PricingSection />
-        <PortfolioSection />
         <WhyChooseUsSection />
         <TeamSection />
       </main>
