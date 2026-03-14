@@ -2562,10 +2562,10 @@ export default function App() {
 
       <main>
         <HeroSection />
-        <PortfolioSection />
         <AboutSection />
         <ServicesSection />
         <PricingSection />
+        <PortfolioSection />
         <WhyChooseUsSection />
         <TeamSection />
       </main>
