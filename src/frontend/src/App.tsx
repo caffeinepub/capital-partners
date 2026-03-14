@@ -1063,7 +1063,7 @@ function PricingSection() {
       name: "Basic Plan",
       badge: "Starter",
       originalPrice: "$499",
-      price: "$299",
+      price: "$149",
       tagline:
         "Perfect for small creators and startups beginning their growth journey.",
       quality: "Standard Quality",
@@ -1081,7 +1081,7 @@ function PricingSection() {
       name: "Professional Plan",
       badge: "Most Popular",
       originalPrice: "$999",
-      price: "$699",
+      price: "$299",
       tagline:
         "Best for growing creators and brands who need consistent content and strategy.",
       quality: "High Quality",
@@ -1099,7 +1099,7 @@ function PricingSection() {
       name: "Pro Plan",
       badge: "Premium",
       originalPrice: "$1,999",
-      price: "$999",
+      price: "$499",
       tagline:
         "For serious creators and businesses who want full content and growth support.",
       quality: "Premium / Professional",
@@ -1699,8 +1699,8 @@ function PricingSection() {
                       <option value="" disabled>
                         Choose a plan
                       </option>
-                      <option value="Basic Plan — $199/month">
-                        Basic Plan — $199/month
+                      <option value="Basic Plan — $149/month">
+                        Basic Plan — $149/month
                       </option>
                       <option value="Professional Plan — $299/month">
                         Professional Plan — $299/month
