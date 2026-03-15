@@ -1185,7 +1185,7 @@ function InfluencerSection() {
 
             {/* CTA */}
             <div className="text-center">
-              <a href="#request">
+              <a href="#request-form">
                 <Button
                   data-ocid="influencer.get_started_button"
                   size="lg"
@@ -1897,6 +1897,9 @@ function PricingSection() {
                     <option value="Custom Service">
                       Custom Service (One-Time Project)
                     </option>
+                    <option value="Influencer &amp; Brand Connection">
+                      Influencer &amp; Brand Connection
+                    </option>
                   </select>
                 </div>
 
@@ -1988,6 +1991,29 @@ function PricingSection() {
                         Customer Service — Starting from $99 USD
                       </option>
                     </select>
+                  </div>
+                )}
+
+                {reqForm.plan === "Influencer & Brand Connection" && (
+                  <div
+                    className="rounded-lg p-4 text-sm"
+                    style={{
+                      background: "oklch(0.12 0.04 60 / 0.3)",
+                      borderColor: "oklch(0.65 0.15 60 / 0.5)",
+                      border: "1px solid",
+                    }}
+                  >
+                    <p
+                      className="font-heading font-semibold mb-1"
+                      style={{ color: "oklch(0.82 0.15 60)" }}
+                    >
+                      Influencer & Brand Connection
+                    </p>
+                    <p className="text-muted-foreground">
+                      We will match you with the right partner and handle the
+                      collaboration. Commission: 15% per successful project.
+                      Describe your needs in the Project Details field below.
+                    </p>
                   </div>
                 )}
 
