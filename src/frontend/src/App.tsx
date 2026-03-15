@@ -10,14 +10,17 @@ import {
   ChevronDown,
   DollarSign,
   Film,
+  FolderOpen,
   Gem,
   Globe,
   Handshake,
+  Headphones,
   ImageIcon,
   LayoutGrid,
   Loader2,
   Lock,
   Mail,
+  Megaphone,
   Menu,
   MessageSquare,
   Palette,
@@ -700,7 +703,7 @@ function AboutSection() {
                     }}
                   >
                     <img
-                      src="/assets/uploads/IMG_5579-3.jpeg"
+                      src="/assets/uploads/IMG_5588-1.png"
                       alt="Fahad Khan"
                       className="w-full h-full object-cover object-top"
                     />
@@ -784,7 +787,7 @@ const SERVICES: ServiceItem[] = [
     icon: <Film size={22} />,
     title: "Video Editing",
     description:
-      "Professional video editing for creators and businesses — from short-form content and YouTube videos to brand reels and promotional films.",
+      "Professional video editing for YouTube, social media, and business content. Crisp cuts, color grading, and motion graphics.",
     tags: ["Editing", "YouTube", "Reels"],
     available: true,
     color: "oklch(0.65 0.22 300)",
@@ -793,73 +796,55 @@ const SERVICES: ServiceItem[] = [
     icon: <ImageIcon size={22} />,
     title: "Thumbnail Design",
     description:
-      "Eye-catching thumbnail designs that drive clicks, boost CTR, and elevate your brand across YouTube, social media, and digital platforms.",
+      "Eye-catching thumbnails and cover designs that increase click-through rates and brand recognition.",
     tags: ["Design", "Thumbnails", "Branding"],
     available: true,
     color: "oklch(0.72 0.22 293)",
   },
   {
-    icon: <Briefcase size={22} />,
-    title: "Management",
+    icon: <Megaphone size={22} />,
+    title: "Brand Promotion",
     description:
-      "End-to-end operational management for businesses of all sizes. We streamline workflows, optimize teams, and drive measurable efficiency across every division.",
-    tags: ["Operations", "Team", "Systems"],
-    available: true,
-    color: "oklch(0.54 0.24 293)",
-  },
-  {
-    icon: <TrendingUp size={22} />,
-    title: "Promotions",
-    description:
-      "Strategic promotional campaigns built to amplify brand presence, accelerate audience growth, and generate tangible ROI across every channel.",
+      "Strategic promotion campaigns to grow your audience and increase brand visibility across platforms.",
     tags: ["Brand", "Marketing", "Growth"],
     available: true,
     color: "oklch(0.65 0.22 300)",
   },
   {
-    icon: <BarChart3 size={22} />,
-    title: "Business Growth & Strategy",
+    icon: <FolderOpen size={22} />,
+    title: "Assets Management",
     description:
-      "Data-driven growth frameworks, market positioning, and strategic roadmaps that transform ambitious goals into scalable, measurable results.",
-    tags: ["Strategy", "Analytics", "Scaling"],
+      "Complete management of your digital assets, files, and media library for smooth operations.",
+    tags: ["Operations", "Media", "Systems"],
+    available: true,
+    color: "oklch(0.54 0.24 293)",
+  },
+  {
+    icon: <Palette size={22} />,
+    title: "Custom Designing",
+    description:
+      "Logos, banners, social media graphics, and any custom design work tailored to your brand.",
+    tags: ["Design", "Branding", "Graphics"],
     available: true,
     color: "oklch(0.72 0.16 75)",
   },
   {
-    icon: <DollarSign size={22} />,
-    title: "Investment Solutions",
+    icon: <Headphones size={22} />,
+    title: "Customer Service",
     description:
-      "Intelligent capital allocation, portfolio structuring, and investment advisory tailored to maximize returns and build generational wealth.",
-    tags: ["Capital", "Portfolio", "Returns"],
+      "Dedicated customer support management to keep your audience engaged and satisfied.",
+    tags: ["Support", "Engagement", "CX"],
     available: true,
     color: "oklch(0.66 0.20 150)",
   },
   {
-    icon: <Zap size={22} />,
-    title: "AI Services",
+    icon: <Users size={22} />,
+    title: "Influencer & Brand Partnerships",
     description:
-      "Next-generation AI-powered automation, analytics, and intelligent tooling designed to give your business a decisive competitive edge.",
-    tags: ["AI", "Automation", "Future"],
-    available: false,
-    color: "oklch(0.54 0.24 293)",
-  },
-  {
-    icon: <Rocket size={22} />,
-    title: "Global Partnerships",
-    description:
-      "Strategic alliance building and international market entry support — opening doors to global networks, partners, and opportunities.",
-    tags: ["Global", "Alliances", "Expansion"],
-    available: false,
-    color: "oklch(0.60 0.22 310)",
-  },
-  {
-    icon: <Target size={22} />,
-    title: "Consulting Suite",
-    description:
-      "Premium consulting packages combining deep-domain expertise across finance, operations, and digital transformation for enterprise clients.",
-    tags: ["Enterprise", "Consulting", "Premium"],
-    available: false,
-    color: "oklch(0.62 0.18 260)",
+      "We match brands with the right influencers and creators for authentic, high-impact collaborations.",
+    tags: ["Influencer", "Partnerships", "Brands"],
+    available: true,
+    color: "oklch(0.82 0.18 75)",
   },
 ];
 
@@ -991,6 +976,241 @@ function ServicesSection() {
   );
 }
 
+/* ─── Influencer & Brand Connection Section ───────────────────── */
+function InfluencerSection() {
+  return (
+    <section
+      id="influencer"
+      data-ocid="influencer.section"
+      className="relative py-28 overflow-hidden"
+    >
+      {/* Background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 90% 60% at 50% 50%, oklch(0.82 0.18 75 / 0.06), transparent 70%)",
+        }}
+      />
+      <div
+        className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-10 pointer-events-none"
+        style={{
+          background: "oklch(0.82 0.18 75)",
+          filter: "blur(120px)",
+          transform: "translate(30%, -30%)",
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-8 pointer-events-none"
+        style={{
+          background: "oklch(0.54 0.24 293)",
+          filter: "blur(100px)",
+          transform: "translate(-30%, 30%)",
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-16 reveal">
+          <span
+            className="font-heading text-xs font-bold tracking-[0.3em] uppercase mb-4 block"
+            style={{ color: "oklch(0.82 0.18 75)" }}
+          >
+            New Service
+          </span>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Influencer &amp;{" "}
+            <span
+              style={{
+                background:
+                  "linear-gradient(135deg, oklch(0.82 0.18 75), oklch(0.90 0.16 85))",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Brand Connection
+            </span>
+          </h2>
+          <div
+            className="w-16 h-0.5 mx-auto mb-6 rounded-full"
+            style={{ background: "oklch(0.82 0.18 75)" }}
+          />
+          <p className="font-body text-muted-foreground max-w-2xl mx-auto text-lg">
+            Bridging the gap between brands and creators
+          </p>
+        </div>
+
+        {/* Main Card */}
+        <div
+          className="reveal rounded-3xl p-8 md:p-12 mb-10 border relative overflow-hidden"
+          style={{
+            background:
+              "linear-gradient(135deg, oklch(0.12 0.04 285 / 0.95), oklch(0.09 0.02 285 / 0.95))",
+            borderColor: "oklch(0.82 0.18 75 / 0.3)",
+            boxShadow:
+              "0 0 80px oklch(0.82 0.18 75 / 0.08), inset 0 1px 0 oklch(0.82 0.18 75 / 0.15)",
+          }}
+        >
+          {/* Decorative corner accent */}
+          <div
+            className="absolute top-0 right-0 w-48 h-48 pointer-events-none opacity-20"
+            style={{
+              background:
+                "radial-gradient(circle, oklch(0.82 0.18 75), transparent 70%)",
+              transform: "translate(30%, -30%)",
+            }}
+          />
+
+          <div className="relative z-10">
+            <p className="font-body text-muted-foreground text-center text-base md:text-lg leading-relaxed mb-10 max-w-3xl mx-auto">
+              We connect companies with relevant influencers and influencers
+              with suitable brands. Our platform handles the partnership and
+              ensures smooth collaboration.
+            </p>
+
+            {/* Commission Highlight Box */}
+            <div
+              className="flex items-center justify-center gap-3 rounded-2xl px-8 py-5 mb-12 mx-auto max-w-xl border"
+              style={{
+                background:
+                  "linear-gradient(135deg, oklch(0.82 0.18 75 / 0.18), oklch(0.78 0.20 65 / 0.12))",
+                borderColor: "oklch(0.82 0.18 75 / 0.5)",
+                boxShadow: "0 0 30px oklch(0.82 0.18 75 / 0.15)",
+              }}
+            >
+              <div
+                className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{ background: "oklch(0.82 0.18 75 / 0.2)" }}
+              >
+                <Gem size={20} style={{ color: "oklch(0.82 0.18 75)" }} />
+              </div>
+              <p
+                className="font-heading text-sm md:text-base font-semibold text-center"
+                style={{ color: "oklch(0.88 0.16 80)" }}
+              >
+                We charge only{" "}
+                <span
+                  className="text-xl font-bold"
+                  style={{ color: "oklch(0.82 0.18 75)" }}
+                >
+                  15% commission
+                </span>{" "}
+                per project for successful collaborations.
+              </p>
+            </div>
+
+            {/* Two Columns */}
+            <div className="grid md:grid-cols-2 gap-6 mb-10">
+              {/* For Brands */}
+              <div
+                className="rounded-2xl p-7 border"
+                style={{
+                  background: "oklch(0.08 0.02 285 / 0.7)",
+                  borderColor: "oklch(0.54 0.24 293 / 0.25)",
+                }}
+              >
+                <div className="flex items-center gap-3 mb-5">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center"
+                    style={{ background: "oklch(0.54 0.24 293 / 0.2)" }}
+                  >
+                    <Briefcase
+                      size={20}
+                      style={{ color: "oklch(0.72 0.22 293)" }}
+                    />
+                  </div>
+                  <h3 className="font-heading text-lg font-bold text-foreground">
+                    For Brands
+                  </h3>
+                </div>
+                <ul className="space-y-3">
+                  {[
+                    "Find the right influencer for your niche",
+                    "Targeted reach to your ideal audience",
+                    "Measurable results and campaign analytics",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <CheckCircle2
+                        size={16}
+                        className="mt-0.5 flex-shrink-0"
+                        style={{ color: "oklch(0.72 0.22 293)" }}
+                      />
+                      <span className="font-body text-muted-foreground text-sm">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* For Influencers */}
+              <div
+                className="rounded-2xl p-7 border"
+                style={{
+                  background: "oklch(0.08 0.02 285 / 0.7)",
+                  borderColor: "oklch(0.82 0.18 75 / 0.25)",
+                }}
+              >
+                <div className="flex items-center gap-3 mb-5">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center"
+                    style={{ background: "oklch(0.82 0.18 75 / 0.15)" }}
+                  >
+                    <Users size={20} style={{ color: "oklch(0.82 0.18 75)" }} />
+                  </div>
+                  <h3 className="font-heading text-lg font-bold text-foreground">
+                    For Influencers
+                  </h3>
+                </div>
+                <ul className="space-y-3">
+                  {[
+                    "Connect with top brands in your industry",
+                    "Fair compensation and transparent deals",
+                    "Professional partnerships and long-term growth",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <CheckCircle2
+                        size={16}
+                        className="mt-0.5 flex-shrink-0"
+                        style={{ color: "oklch(0.82 0.18 75)" }}
+                      />
+                      <span className="font-body text-muted-foreground text-sm">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center">
+              <a href="#request">
+                <Button
+                  data-ocid="influencer.get_started_button"
+                  size="lg"
+                  className="font-heading font-bold tracking-wide px-10 py-4 rounded-full text-base transition-all duration-300"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, oklch(0.82 0.18 75), oklch(0.74 0.20 65))",
+                    color: "oklch(0.10 0.02 285)",
+                    boxShadow: "0 0 30px oklch(0.82 0.18 75 / 0.3)",
+                  }}
+                >
+                  Get Started
+                </Button>
+              </a>
+              <p className="font-body text-muted-foreground text-sm mt-3">
+                Start a partnership today — no upfront fees
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── Pricing Section ─────────────────────────────────────────── */
 function PricingSection() {
   const [reqForm, setReqForm] = useState({
@@ -1047,7 +1267,7 @@ function PricingSection() {
       name: "Basic Plan",
       badge: "Starter",
       originalPrice: "$499",
-      price: "$149",
+      price: "$199",
       tagline:
         "Perfect for small creators and startups beginning their growth journey.",
       quality: "Standard Quality",
@@ -1064,7 +1284,7 @@ function PricingSection() {
       name: "Professional Plan",
       badge: "Most Popular",
       originalPrice: "$999",
-      price: "$299",
+      price: "$399",
       tagline:
         "Best for growing creators and brands who need consistent content and strategy.",
       quality: "High Quality",
@@ -1081,7 +1301,7 @@ function PricingSection() {
       name: "Pro Plan",
       badge: "Premium",
       originalPrice: "$1,999",
-      price: "$499",
+      price: "$599",
       tagline:
         "For serious creators and businesses who want full content and growth support.",
       quality: "Premium / Professional",
@@ -1124,8 +1344,10 @@ function PricingSection() {
     },
     {
       name: "Customer Service",
-      range: "Starting from $99",
-      note: "depending on task and scope",
+      range: "Starting from $99 USD",
+      note: "depending on project scope and requirements",
+      description:
+        "Have a custom project? Share your requirements with us and our team will try its best to deliver the best possible results.",
     },
   ];
 
@@ -1184,7 +1406,7 @@ function PricingSection() {
                 "oklch(0.65 0.22 300)",
                 "oklch(0.65 0.22 300)",
                 "oklch(0.65 0.22 300)",
-                "oklch(0.65 0.22 300)",
+                "oklch(0.72 0.16 75)",
               ];
               return (
                 <div
@@ -1232,6 +1454,16 @@ function PricingSection() {
                     <p className="font-body text-xs text-muted-foreground mt-1">
                       {svc.note}
                     </p>
+                    {"description" in svc &&
+                      (svc as typeof svc & { description: string })
+                        .description && (
+                        <p className="font-body text-xs text-muted-foreground mt-3 leading-relaxed opacity-80">
+                          {
+                            (svc as typeof svc & { description: string })
+                              .description
+                          }
+                        </p>
+                      )}
                   </div>
                   <button
                     type="button"
@@ -1696,14 +1928,14 @@ function PricingSection() {
                       <option value="" disabled>
                         Choose a plan
                       </option>
-                      <option value="Basic Plan — $149/month">
-                        Basic Plan — $149/month
+                      <option value="Basic Plan — $199/month">
+                        Basic Plan — $199/month
                       </option>
-                      <option value="Professional Plan — $299/month">
-                        Professional Plan — $299/month
+                      <option value="Professional Plan — $399/month">
+                        Professional Plan — $399/month
                       </option>
-                      <option value="Pro Plan — $499/month">
-                        Pro Plan — $499/month
+                      <option value="Pro Plan — $599/month">
+                        Pro Plan — $599/month
                       </option>
                     </select>
                   </div>
@@ -1753,7 +1985,7 @@ function PricingSection() {
                         Custom Designing — Starting from $99
                       </option>
                       <option value="Customer Service">
-                        Customer Service — $99–$10,000
+                        Customer Service — Starting from $99 USD
                       </option>
                     </select>
                   </div>
@@ -2196,7 +2428,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     description:
       "Brings deep business strategy and operational expertise, helping Capital Partners scale with precision and purpose.",
     available: true,
-    photo: "/assets/uploads/IMG_5579-3.jpeg",
+    photo: "/assets/uploads/IMG_5588-1.png",
     gradient:
       "linear-gradient(135deg, oklch(0.44 0.22 285), oklch(0.60 0.26 295))",
   },
@@ -2716,6 +2948,7 @@ export default function App() {
         <HeroSection />
         <AboutSection />
         <ServicesSection />
+        <InfluencerSection />
         <PricingSection />
         <PortfolioSection />
         <WhyChooseUsSection />
