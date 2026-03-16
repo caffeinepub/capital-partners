@@ -1093,7 +1093,7 @@ function InfluencerSection() {
                   className="text-xl font-bold"
                   style={{ color: "oklch(0.82 0.18 75)" }}
                 >
-                  15% commission
+                  10% commission
                 </span>{" "}
                 per project for successful collaborations.
               </p>
@@ -1369,7 +1369,7 @@ function PricingSection() {
     },
     {
       name: "Influencer & Brand Connection",
-      range: "15% commission",
+      range: "10% commission",
       note: "per successful collaboration",
       description:
         "We connect companies with relevant influencers and influencers with suitable brands. Our platform handles the partnership and ensures smooth collaboration.",
@@ -2044,7 +2044,7 @@ function PricingSection() {
                         Customer Service — Starting from $49 USD
                       </option>
                       <option value="Influencer & Brand Connection">
-                        Influencer &amp; Brand Connection — 15% commission
+                        Influencer &amp; Brand Connection — 10% commission
                       </option>
                     </select>
                   </div>
@@ -2067,7 +2067,7 @@ function PricingSection() {
                     </p>
                     <p className="text-muted-foreground">
                       We will match you with the right partner and handle the
-                      collaboration. Commission: 15% per successful project.
+                      collaboration. Commission: 10% per successful project.
                       Describe your needs in the Project Details field below.
                     </p>
                   </div>
@@ -3032,8 +3032,8 @@ export default function App() {
         <HeroSection />
         <AboutSection />
         <ServicesSection />
-        <InfluencerSection />
         <PricingSection />
+        <InfluencerSection />
         <PortfolioSection />
         <WhyChooseUsSection />
         <TeamSection />
