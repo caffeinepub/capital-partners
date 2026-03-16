@@ -1217,6 +1217,7 @@ function PricingSection() {
     name: "",
     email: "",
     phone: "",
+    whatsapp: "",
     discord: "",
     business: "",
     plan: "",
@@ -1227,18 +1228,34 @@ function PricingSection() {
   const [submitted, setSubmitted] = useState(false);
   const { actor } = useActor();
 
+  const isInfluencer = reqForm.plan === "Influencer & Brand Connection";
+
   const handleRequestSubmit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault();
-      const { name, email, phone, discord, business, plan, details } = reqForm;
+      const { name, email, phone, whatsapp, discord, business, plan, details } =
+        reqForm;
+      const isInfluencerPlan = plan === "Influencer & Brand Connection";
       if (!name.trim() || !email.trim() || !plan) {
         toast.error("Please fill in Name, Email, and select a Service Plan.");
+        return;
+      }
+      if (
+        isInfluencerPlan &&
+        (!phone.trim() ||
+          !whatsapp.trim() ||
+          !business.trim() ||
+          !details.trim())
+      ) {
+        toast.error(
+          "Please fill in all required fields for Influencer & Brand Connection.",
+        );
         return;
       }
       setIsSubmitting(true);
       try {
         if (actor) {
-          const fullMessage = `Phone/WhatsApp: ${phone}\nDiscord: ${discord}\nBusiness: ${business}\nService Type: ${plan}${reqForm.subService ? `\nSelected: ${reqForm.subService}` : ""}\n\nProject Details:\n${details}`;
+          const fullMessage = `Phone: ${phone}\nWhatsApp: ${whatsapp}\nDiscord: ${discord}\nBusiness: ${business}\nService Type: ${plan}${reqForm.subService ? `\nSelected: ${reqForm.subService}` : ""}\n\nProject Details:\n${details}`;
           await actor.submitContactMessage(name, email, fullMessage);
         }
         setSubmitted(true);
@@ -1247,6 +1264,7 @@ function PricingSection() {
           name: "",
           email: "",
           phone: "",
+          whatsapp: "",
           discord: "",
           business: "",
           plan: "",
@@ -1319,7 +1337,7 @@ function PricingSection() {
   const customServices = [
     {
       name: "Video Editing",
-      range: "Starting from $99",
+      range: "Starting from $49",
       note: "depending on complexity",
     },
     {
@@ -1329,25 +1347,32 @@ function PricingSection() {
     },
     {
       name: "Promotion Services",
-      range: "Starting from $99",
+      range: "Starting from $49",
       note: "depending on campaign size",
     },
     {
       name: "Assets Management",
-      range: "Starting from $99",
+      range: "Starting from $49",
       note: "depending on project scope",
     },
     {
       name: "Custom Designing",
-      range: "Starting from $99",
+      range: "Starting from $49",
       note: "depends on task",
     },
     {
       name: "Customer Service",
-      range: "Starting from $99 USD",
+      range: "Starting from $49 USD",
       note: "depending on project scope and requirements",
       description:
         "Have a custom project? Share your requirements with us and our team will try its best to deliver the best possible results.",
+    },
+    {
+      name: "Influencer & Brand Connection",
+      range: "15% commission",
+      note: "per successful collaboration",
+      description:
+        "We connect companies with relevant influencers and influencers with suitable brands. Our platform handles the partnership and ensures smooth collaboration.",
     },
   ];
 
@@ -1407,6 +1432,7 @@ function PricingSection() {
                 "oklch(0.65 0.22 300)",
                 "oklch(0.65 0.22 300)",
                 "oklch(0.72 0.16 75)",
+                "oklch(0.60 0.20 200)",
               ];
               return (
                 <div
@@ -1813,7 +1839,7 @@ function PricingSection() {
                       htmlFor="req-phone"
                       className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
                     >
-                      Phone / WhatsApp
+                      {isInfluencer ? "Phone Number *" : "Phone / WhatsApp"}
                     </label>
                     <Input
                       id="req-phone"
@@ -1826,12 +1852,37 @@ function PricingSection() {
                       className="bg-transparent border-border/60 focus:border-primary"
                     />
                   </div>
+                  {isInfluencer && (
+                    <div className="flex flex-col gap-2">
+                      <label
+                        htmlFor="req-whatsapp"
+                        className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+                      >
+                        WhatsApp *
+                      </label>
+                      <Input
+                        id="req-whatsapp"
+                        data-ocid="request.whatsapp.input"
+                        placeholder="+1 234 567 8900"
+                        value={reqForm.whatsapp}
+                        onChange={(e) =>
+                          setReqForm((p) => ({
+                            ...p,
+                            whatsapp: e.target.value,
+                          }))
+                        }
+                        className="bg-transparent border-border/60 focus:border-primary"
+                      />
+                    </div>
+                  )}
                   <div className="flex flex-col gap-2">
                     <label
                       htmlFor="req-discord"
                       className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
                     >
-                      Discord Username
+                      {isInfluencer
+                        ? "Discord Username (Optional)"
+                        : "Discord Username"}
                     </label>
                     <Input
                       id="req-discord"
@@ -1851,7 +1902,9 @@ function PricingSection() {
                     htmlFor="req-business"
                     className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
                   >
-                    Business Name
+                    {isInfluencer
+                      ? "Business Name / Channel Name *"
+                      : "Business Name"}
                   </label>
                   <Input
                     id="req-business"
@@ -1973,22 +2026,25 @@ function PricingSection() {
                         Choose a service
                       </option>
                       <option value="Video Editing">
-                        Video Editing — Starting from $99
+                        Video Editing — Starting from $49
                       </option>
                       <option value="Thumbnail Design">
                         Thumbnail Design — Starting from $49
                       </option>
                       <option value="Promotion Services">
-                        Promotion Services — $99–$799
+                        Promotion Services — Starting from $49
                       </option>
                       <option value="Assets Management">
-                        Assets Management — Starting from $99
+                        Assets Management — Starting from $49
                       </option>
                       <option value="Custom Designing">
-                        Custom Designing — Starting from $99
+                        Custom Designing — Starting from $49
                       </option>
                       <option value="Customer Service">
-                        Customer Service — Starting from $99 USD
+                        Customer Service — Starting from $49 USD
+                      </option>
+                      <option value="Influencer & Brand Connection">
+                        Influencer &amp; Brand Connection — 15% commission
                       </option>
                     </select>
                   </div>
@@ -2022,7 +2078,9 @@ function PricingSection() {
                     htmlFor="req-details"
                     className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground"
                   >
-                    Project Details
+                    {isInfluencer
+                      ? "Project / Business / Channel Details *"
+                      : "Project Details"}
                   </label>
                   <Textarea
                     id="req-details"
