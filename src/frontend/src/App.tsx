@@ -1367,13 +1367,6 @@ function PricingSection() {
       description:
         "Have a custom project? Share your requirements with us and our team will try its best to deliver the best possible results.",
     },
-    {
-      name: "Influencer & Brand Connection",
-      range: "10% commission",
-      note: "per successful collaboration",
-      description:
-        "We connect companies with relevant influencers and influencers with suitable brands. Our platform handles the partnership and ensures smooth collaboration.",
-    },
   ];
 
   return (
@@ -1728,6 +1721,7 @@ function PricingSection() {
           </div>
         </div>
 
+        <InfluencerSection />
         <div id="request-form" className="mt-20 reveal">
           <div className="text-center mb-10">
             <span className="font-heading text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3 block">
@@ -3033,7 +3027,6 @@ export default function App() {
         <AboutSection />
         <ServicesSection />
         <PricingSection />
-        <InfluencerSection />
         <PortfolioSection />
         <WhyChooseUsSection />
         <TeamSection />
